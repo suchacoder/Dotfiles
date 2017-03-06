@@ -1,0 +1,131 @@
+! ------------------------------------------------------------------------------
+! Defining Color Scheme
+! ------------------------------------------------------------------------------
+#define xbackground #121212
+#define xforeground #5F5F5F
+#define xcursor     #E0301E
+
+#define black       #121212
+#define bblack      #4C4C4C
+
+#define red         #A01A73
+#define bred        #B000DF
+
+#define green       #559E83
+#define bgreen      #009999
+
+#define yellow      #F75500
+#define byellow     #E0301E
+
+#define blue        #0091C9
+#define bblue       #428BCA
+
+#define magenta     #736AFF
+#define bmagenta    #C45AEC
+
+#define cyan        #C1121B
+#define bcyan       #AE0001
+
+#define white       #4C4C4C
+#define bwhite      #4C4C4C
+
+! ------------------------------------------------------------------------------
+! Settin up Color Scheme
+! ------------------------------------------------------------------------------
+*.background: xbackground
+*.foreground: xforeground
+*.cursorColor: xcursor
+
+*.color0:           black
+*.color8:           bblack
+
+*.color1:           red
+*.color9:           bred
+
+*.color2:           green
+*.color10:          bgreen
+
+*.color3:           yellow
+*.color11:          byellow
+
+*.color4:           blue
+*.color12:          bblue
+
+*.color5:           magenta
+*.color13:          bmagenta
+
+*.color6:           cyan
+*.color14:          bcyan
+
+*.color7:           white
+*.color15:          bwhite
+
+*.depth: 32
+
+! ------------------------------------------------------------------------------
+! Xft
+! ------------------------------------------------------------------------------
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! ------------------------------------------------------------------------------
+! Urxvt
+! ------------------------------------------------------------------------------
+! Work around for ssh
+URxvt*termName: rxvt
+
+! Font
+URxvt*font: xft:inconsolata:pixelsize=15
+!URxvt.letterSpace: 1
+
+! Cursor
+URxvt.cursorBlink: 0
+
+! Disabling scrollbar, setting it as login shell
+xterm*termName: xterm-256color
+URxvt.scrollBar: false
+URxvt*loginShell: true
+
+! Set terminal padding
+URxvt.internalBorder: 6
+
+! Enables copy/paste with Ctrl-Shift-C/V, Yankeable urls, and scrollwheel
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
+URxvt.perl-ext: default,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
+URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
+URxvt.clipboard.copycmd:  xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+
+! Default browser for launching urls
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+URxvt.matcher.button: 1
+
+! Url history
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+
+! Url color
+URxvt.colorUL: #E0301E
+
+! rxvt-unicode bell feeds from irssi and alike
+URxvt.urgentOnBell:  true
+URxvt*metaSendsEscape: true
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #000000, #000000, #000000
+rofi.color-normal: #000000, #ffffff, #000000, #000000, #B000DF
+rofi.color-active: #000000, #ffffff, #000000, #000000, #B000DF
+rofi.color-urgent: #000000, #990000, #000000, #000000, #CC0000
