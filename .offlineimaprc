@@ -1,0 +1,48 @@
+[general]
+ui = ttyui
+accounts = Gmail
+# Path to file with arbitrary Python code to be loaded
+pythonfile = ~/.offlineimap.py
+fsync = False
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+status_backend = sqlite
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/Mail/leanhack
+nametrans = lambda folder:   {'Drafts':   '[Gmail]/Drafts',
+                              'Sent':     '[Gmail]/Sent Mail',
+                              'Archived': '[Gmail]/All Mail',
+                              'Arch':     '[Gmail]/Arch',
+                              'Github':   '[Gmail]/Github',
+                              'Taringa':  '[Gmail]/Taringa',
+                              'Twitter':  '[Gmail]/Twitter',
+                              'Youtube':  '[Gmail]/Youtube',
+                             }.get(folder, folder)
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = leanhack@gmail.com
+# Decrypt and read the encrypted password
+remotepasseval = get_pass()
+realdelete = yes
+maxconnections = 1
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+nametrans = lambda folder:   {'[Gmail]/Drafts':    'Drafts',
+                              '[Gmail]/Sent Mail': 'Sent',
+                              '[Gmail]/All Mail':  'Archived',
+                              '[Gmail]/Arch':      'Arch',
+                              '[Gmail]/Github':    'Github',
+                              '[Gmail]/Taringa':   'Taringa',
+                              '[Gmail]/Twitter':   'Twitter',
+                              '[Gmail]/Youtube':   'Youtube',
+                             }.get(folder, folder)
+
+folderfilter = lambda folder: folder not in   ['[Gmail]/Trash',
+                                               '[Gmail]/Important',
+                                               '[Gmail]/Spam',
+                                               '[Gmail]/Chats',
+                                              ]
