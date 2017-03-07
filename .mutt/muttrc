@@ -1,0 +1,184 @@
+# Sourcing - - - - - - - - - - - - - - - - - -
+
+# Source color scheme
+source ~/.mutt/colors/mutt.color
+
+# Source macros
+source ~/.mutt/macros
+
+# Account Settings - - - - - - - - - - - - - -  
+
+# Default inbox
+set spoolfile   = "+leanhack/INBOX"
+
+# Mailboxes to show in the sidebar
+mailboxes +leanhack/INBOX \
+          +leanhack/Archived \
+          +leanhack/Drafts \
+          +leanhack/Sent \
+          +leanhack/Youtube \
+          +leanhack/Github \
+          +leanhack/Twitter \
+          +leanhack/Arch \
+          +leanhack/Taringa \
+
+# Other special folders - - - - - - - - - - -
+set mbox        = "+leanhack/Archived"
+set postponed   = "+leanhack/Draft"
+set record      = "+leanhack/Sent"
+
+# Folders - - - - - - - - - - - - - - - - - - 
+
+set folder           = ~/Mail
+#set alias_file      = ~/.mutt/aliases     # where to store aliases - i'll use abook for contacts
+#set sort_alias      = alias               # specifies which field to use to sort the alias list when displayed in Mutt. Possible values: alias, address. - i'll use abook for contacts
+#set reverse_alias   = yes                 # sorts in reverse order if set to yes - i'll use abook for contacts
+#source $alias_file                        # tells Mutt to read aliases on startup. Needed for auto-completion - i'll use abook for contacts
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies # where to store bodies
+set certificate_file = ~/.mutt/certificates # where to store certs
+set mailcap_path     = ~/.mutt/mailcap      # entries for filetypes
+set tmpdir           = ~/.mutt/tmp          # where to keep temp files
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+# Abook - - - - - - - - - - - - - - - - - - - - - -
+
+set query_command = "abook --mutt-query '%s'"
+macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor         <Tab> complete-query
+
+# Main options - - - - - - - - - - - - - - - - - -
+
+set realname      = "CuriousX"
+set from          = "leanhack@gmail.com"
+set send_charset  = "utf-8"
+set mail_check    = "0"                     # minimum time between scans
+set envelope_from
+set wait_key      = no                      # shut up, mutt
+set mbox_type     = Maildir
+set sendmail      = /usr/bin/msmtp
+set timeout       = 3                       # idle time before scanning
+set delete                                  # don't ask, just do
+set quit                                    # don't ask, just do!!
+set beep_new                                # bell on new mails
+set pipe_decode                             # strip headers and eval mimes when piping
+set thorough_search                         # strip headers and eval mimes before searching
+set sendmail_wait = 0
+set crypt_use_gpgme = yes
+set crypt_replysign = yes
+set crypt_replysignencrypted = yes
+set pgp_timeout   = 3600
+set edit_headers  = yes
+unmy_hdr *
+my_hdr X-Info: Keep It Simple, Stupid.
+my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
+my_hdr X-Message-Flag: WARNING!! Outlook sucks
+my_hdr User-Agent: Netscape V 2.0
+set signature = "/usr/bin/fortune|"         # my signature file
+unset use_from
+unset use_domain
+unset user_agent
+unset mark_old                              # read/new is good enough for me
+unset move                                  # gmail does that
+unset confirmappend                         # don't ask, just do!
+unset record
+#set imap_check_subscribed = yes
+
+auto_view text/html                         # automatically open HTML messages in lynx, w3m or elinks
+alternative_order text/plain text/html      # avoid mutt trying to parse every mail as html
+
+# Index View Options - - - - - - - - - 
+set date_format =  "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                          # like gmail
+set sort_aux = reverse-last-date-received   # like gmail - there is also last-date-received
+set uncollapse_jump                         # don't collapse on an unread message
+#set sort_reo                               # thread based on regex
+#set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Sidebar Patch - - - - - - - - - - - -
+set sidebar_divider_char       = '  │'
+set sidebar_delim_chars        = '/.'
+set sidebar_visible            = yes
+set sidebar_width              = 24
+set sidebar_folder_indent      = yes
+set sidebar_indent_string      = '  '
+set sidebar_short_path         = yes
+set sidebar_sort_method        = unsorted
+#set sidebar_new_mail_only     = no
+#set sidebar_next_new_wrap     = no         # When searching for mailboxes containing new mail, should the search wrap when searching for mailboxes containing new mail, should the search wrap
+
+# Sidebar Navigation - - - - - - - - - - - - 
+bind index,pager <Down>          sidebar-next
+bind index,pager <Up>            sidebar-prev
+bind index,pager <right>         sidebar-open
+
+
+# Status Bar - - - - - - - - - - - - -
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+
+# Header Options - - - - - - - - - - -
+ignore *                                    # ignore all headers
+unignore from: to: cc: date: subject:       # show only these
+unhdr_order *                               # some distros order things by default
+hdr_order from: to: cc: date: subject:      # and in this order
+
+
+# Index Key Bindings - - - - - - - - - - - - 
+bind index gg       first-entry
+bind index G        last-entry
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+bind index p recall-message                 # edit a postponed message
+bind compose p postpone-message             # postpone an email if writing an email offline to send it once you get insternet
+
+bind index N search-opposite                # cycle through matched words
+bind pager N search-opposite                # !!
+
+# Pager View Options - - - - - - - - -
+set pager_index_lines = 10                  # number of index lines to show
+set pager_context     = 3                   # number of context lines to show
+set pager_stop        = yes                 # don't go to next message automatically
+set menu_scroll                             # scroll in menus
+set tilde                                   # show tildes like in vim
+unset markers                               # no ugly plus signs
+
+set quote_regexp      = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+
+# Pager Key Bindings - - - - - - - - -
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+
+# Compose View Options - - - - - - - -
+set realname = "CuriousX"                   # who am i?
+set envelope_from                           # which from?
+set sig_dashes                              # dashes before sig
+set edit_headers                            # show headers when composing
+set fast_reply = yes                        # skip to compose when replying
+set askcc                                   # ask for CC:
+set fcc_attach                              # save attachments with the body
+unset mime_forward                          # forward attachments as part of body
+set forward_format = "Fwd: %s"              # format of subject when forwarding
+set forward_decode                          # decode when forwarding
+set attribution = "On %d, %n wrote:"        # format of quoting header
+set reply_to                                # reply to Reply to: field
+set reverse_name                            # reply as whomever it was to
+set include = yes                           # include message in replies
+set forward_quote                           # include message in forwards
+#alternates mail1@server1|mail2@server2...  # ignore own e-mail addresses from group-reply

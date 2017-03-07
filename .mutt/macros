@@ -1,0 +1,28 @@
+macro index a "<limit>all\n"                                                                                                           "show all messages (undo limit)"
+
+
+macro index D "<save-message>+[Gmail]/Trash<enter>"                                                                                    "Move message to the trash"
+
+
+macro index S "<save-message>+[Gmail]/Spam<enter>"                                                                                     "Mark message as spam"
+
+
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"                                                           "Ctrl-R to mark all as read"
+
+
+macro index O "<shell-escape>offlineimap<enter>"                                                                                       "run offlineimap to sync all mails"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>"                                                                             "run offlineimap to sync inbox"
+
+
+macro index C "<copy-message>?<toggle-mailboxes>"                                                                                      "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>"                                                                                      "move a message to a mailbox"
+
+
+macro pager \Cu "|urlview<enter>"                                                                                                      "Press Ctrl+u to launch urlview"
+
+
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"   "Open the HTML mail selected from the attachment view in the web browser defined in the environment"
+
+
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'                                                                  "Toggle visible sidebar on off"
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'                                                            "Toggle visible sidebar on off"
