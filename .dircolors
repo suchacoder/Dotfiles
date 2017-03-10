@@ -156,23 +156,23 @@ STICKY                  37;44      # dir with the sticky bit set (+t) and not ot
 .cab  01;31
 
 # image formats
-.jpg  00;32
-.jpeg 00;32
-.gif  00;32
-.bmp  00;32
-.pbm  00;32
-.pgm  00;32
-.ppm  00;32
-.tga  00;32
-.xbm  00;32
-.xpm  00;32
-.tif  00;32
-.tiff 00;32
-.png  00;32
-.svg  00;32
-.svgz 00;32
-.mng  00;32
-.pcx  00;32
+.jpg  00;35
+.jpeg 00;35
+.gif  00;35
+.bmp  00;35
+.pbm  00;35
+.pgm  00;35
+.ppm  00;35
+.tga  00;35
+.xbm  00;35
+.xpm  00;35
+.tif  00;35
+.tiff 00;35
+.png  00;35
+.svg  00;35
+.svgz 00;35
+.mng  00;35
+.pcx  00;35
 .mov  00;32
 .mpg  00;32
 .mpeg 00;32
@@ -206,28 +206,28 @@ STICKY                  37;44      # dir with the sticky bit set (+t) and not ot
 # http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 
 # audio formats
-.aac  00;32
-.au   00;32
-.flac 00;32
-.m4a  00;32
-.mid  00;32
-.midi 00;32
-.mka  00;32
-.mp3  00;32
-.mpc  00;32
-.ogg  00;32
-.ra   00;32
-.wav  00;32
-.oga  00;32
-.opus 00;32
-.spx  00;32
-.xspf 00;32
+.aac  00;34
+.au   00;34
+.flac 00;34
+.m4a  00;34
+.mid  00;34
+.midi 00;34
+.mka  00;34
+.mp3  00;34
+.mpc  00;34
+.ogg  00;34
+.ra   00;34
+.wav  00;34
+.oga  00;34
+.opus 00;34
+.spx  00;34
+.xspf 00;34
 # http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 
 # docs files
-.pdf  00;31
+.pdf  00;33
 
-.odt  00;34  # for word processing (text) documents
+.odt  00;31  # for word processing (text) documents
 .fodt 00;34  # for word processing (text) documents
 
 .ods  00;32  # for spreadsheets
