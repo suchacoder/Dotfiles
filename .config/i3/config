@@ -13,30 +13,30 @@ set $mod Mod4
 
 
 # Setting some colors
-set  $black     #121212
-set  $bblack    #4C4C4C
-set  $cblack    #191919
+set  $black     #052832
+set  $bblack    #707573
+set  $cblack    #024354
 
-set  $red       #A01A73
-set  $bred      #B000DF
+set  $red       #c1121b
+set  $bred      #b58900
 
-set  $green     #559E83
-set  $bgreen    #009999
+set  $green     #009999
+set  $bgreen    #859900
 
-set  $yellow    #F75500
-set  $byellow   #E0301E
+set  $yellow    #E0301E
+set  $byellow   #F39c12
 
-set  $blue      #0091C9
-set  $bblue     #428BCA
+set  $blue      #428BCA
+set  $bblue     #16a085
 
-set  $magenta   #736AFF
+set  $magenta   #e02c6d
 set  $bmagenta  #C45AEC
 
-set  $cyan      #C1121B
-set  $bcyan     #AE0001
+set  $cyan      #024354
+set  $bcyan     #073642
 
-set  $white     #4C4C4C
-set  $bwhite    #4C4C4C
+set  $white     #707573
+set  $bwhite    #707573
 set  $cwhite    #F2F2F2      
 
 
@@ -44,9 +44,9 @@ set  $cwhite    #F2F2F2
 
 # Class                    border     backgr.    text       indicator    child_border
 
-client.focused             $black     $byellow   $black     $yellow      $black
+client.focused             $bcyan     $bblue     $black     $yellow      $black
 client.focused_inactive    $black     $cblack    $bblack    $yellow      $black
-client.unfocused           $black     $cblack    $bblack    $yellow      $black
+client.unfocused           $black     $bcyan     $bblack    $yellow      $black
 client.urgent              $bred      $bred      $cwhite    $yellow      $bred
 client.placeholder         $bred      $bred      $cwhite    $yellow      $bred
 
@@ -71,9 +71,9 @@ bar {
         separator  $bblack
         
         #class                border     background  text
-        focused_workspace     $byellow   $byellow    $black
-        active_workspace      $black     $black      $byellow
-        inactive_workspace    $black     $black      $byellow
+        focused_workspace     $bblue     $bblue      $black
+        active_workspace      $black     $black      $bblue
+        inactive_workspace    $black     $black      $bblue
         urgent_workspace      $bred      $bred       $cwhite
         binding_mode          $yellow    $yellow     $black
 
@@ -345,12 +345,13 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opaci
 
 # Press $mod+o to use the 'mode launcher' and Return or Esc to go back at the default mode
 
-set $mode_launcher Launch: [D]iscord [J]downloader [P]avucontrol [S]team [T]eamspeak [U]rban [X]fburn [W]allpaper
+set $mode_launcher Launch: [D]iscord [G]pick [J]downloader [P]avucontrol [S]team [T]eamspeak [U]rban [X]fburn [W]allpaper
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
     bindsym d exec discord
+    bindsym g exec gpick
     bindsym j exec jdownloader
     bindsym t exec teamspeak
     bindsym p exec pavucontrol
