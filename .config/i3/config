@@ -20,8 +20,8 @@ set  $cblack    #024354
 set  $red       #c1121b
 set  $bred      #b58900
 
-set  $green     #009999
-set  $bgreen    #859900
+set  $green     #859900
+set  $bgreen    #009999
 
 set  $yellow    #E0301E
 set  $byellow   #F39c12
@@ -44,11 +44,11 @@ set  $cwhite    #F2F2F2
 
 # Class                    border     backgr.    text       indicator    child_border
 
-client.focused             $bcyan     $bblue     $black     $yellow      $black
-client.focused_inactive    $black     $cblack    $bblack    $yellow      $black
-client.unfocused           $black     $bcyan     $bblack    $yellow      $black
-client.urgent              $bred      $bred      $cwhite    $yellow      $bred
-client.placeholder         $bred      $bred      $cwhite    $yellow      $bred
+client.focused             $bcyan     $bblue     $black     $red         $black
+client.focused_inactive    $black     $cblack    $bblack    $red         $black
+client.unfocused           $black     $bcyan     $bblack    $red         $black
+client.urgent              $magenta   $magenta   $cwhite    $red         $bred
+client.placeholder         $bmagenta  $bmagenta  $cwhite    $red         $bred
 
 client.background          $cwhite
 
@@ -74,8 +74,8 @@ bar {
         focused_workspace     $bblue     $bblue      $black
         active_workspace      $black     $black      $bblue
         inactive_workspace    $black     $black      $bblue
-        urgent_workspace      $bred      $bred       $cwhite
-        binding_mode          $yellow    $yellow     $black
+        urgent_workspace      $magenta   $magenta    $cwhite
+        binding_mode          $green     $green      $black
 
     }
 }
