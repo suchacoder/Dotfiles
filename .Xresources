@@ -1,33 +1,33 @@
 ! ------------------------------------------------------------------------------
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
-#define xbackground #121212
-#define xforeground #5F5F5F
-#define xcursor     #E0301E
+#define xbackground #052832
+#define xforeground #707573
+#define xcursor     #16a085
 
-#define black       #121212
-#define bblack      #4C4C4C
+#define black       #052832
+#define bblack      #707573
 
-#define red         #A01A73
-#define bred        #B000DF
+#define red         #b58900
+#define bred        #c1121b
 
-#define green       #559E83
+#define green       #859900
 #define bgreen      #009999
 
-#define yellow      #F75500
-#define byellow     #E0301E
+#define yellow      #E0301E
+#define byellow     #F39c12
 
-#define blue        #0091C9
-#define bblue       #428BCA
+#define blue        #428BCA
+#define bblue       #16a085
 
-#define magenta     #736AFF
+#define magenta     #e02c6d
 #define bmagenta    #C45AEC
 
-#define cyan        #C1121B
-#define bcyan       #AE0001
+#define cyan        #024354
+#define bcyan       #2c3e50
 
-#define white       #4C4C4C
-#define bwhite      #4C4C4C
+#define white       #707573
+#define bwhite      #707573
 
 ! ------------------------------------------------------------------------------
 ! Settin up Color Scheme
