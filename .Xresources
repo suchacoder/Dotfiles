@@ -11,8 +11,8 @@
 #define red         #b58900
 #define bred        #c1121b
 
-#define green       #7d9002
-#define bgreen      #006666
+#define green       #006666
+#define bgreen      #7d9002
 
 #define yellow      #E0301E
 #define byellow     #F39c12
