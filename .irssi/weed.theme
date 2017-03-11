@@ -81,7 +81,7 @@ abstracts = {
 
   # All of below: $0 = mode, $1 = nick
   msgnick = "$0$1- %|";
-  ownmsgnick = "{msgnick %G$1%K%_|}%y";
+  ownmsgnick = "{msgnick %g$1%K%_|}%y";
   ownnick = "$*";
 
   # v3.05-hilight is now on red background and white text
@@ -91,10 +91,10 @@ abstracts = {
 
   pubmsgnick = "{msgnick $1%K%_|}%n";
   pubnick = "$*";
-  pubmsgmenick = "%1%W{msgnick $1-|}";
+  pubmsgmenick = "%p%c{msgnick $1%K%_|}%_%c";
   menick = "$*%n";
   # $0 = hilight color, $1 = mode, $2 = nick
-  pubmsghinick = "%1%W{msgnick $2-|}";
+  pubmsghinick = "%c%M{msgnick $2-|}";
 
   # Got rid of on version 3.05:
   #
