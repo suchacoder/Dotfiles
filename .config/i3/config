@@ -44,8 +44,8 @@ set  $cwhite    #F2F2F2
 
 # Class                    border     backgr.    text       indicator    child_border
 
-client.focused             $green     $green     $black     $yellow      $black
-client.focused_inactive    $bcyan     $bcyan     $black     $yellow      $black
+client.focused             $bcyan     $bcyan     $black     $yellow      $black
+client.focused_inactive    $green     $green     $black     $yellow      $black
 client.unfocused           $bgreen    $bgreen    $black     $yellow      $black
 client.urgent              $magenta   $magenta   $cwhite    $yellow      $bred
 client.placeholder         $bmagenta  $bmagenta  $cwhite    $yellow      $bred
