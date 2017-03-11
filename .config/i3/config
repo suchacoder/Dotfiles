@@ -17,11 +17,11 @@ set  $black     #052832
 set  $bblack    #707573
 set  $cblack    #024354
 
-set  $red       #c1121b
-set  $bred      #b58900
+set  $red       #b58900
+set  $bred      #c1121b
 
-set  $green     #859900
-set  $bgreen    #009999
+set  $green     #7d9002
+set  $bgreen    #006666
 
 set  $yellow    #E0301E
 set  $byellow   #F39c12
@@ -33,7 +33,7 @@ set  $magenta   #e02c6d
 set  $bmagenta  #C45AEC
 
 set  $cyan      #024354
-set  $bcyan     #073642
+set  $bcyan     #2c3e50
 
 set  $white     #707573
 set  $bwhite    #707573
@@ -44,11 +44,11 @@ set  $cwhite    #F2F2F2
 
 # Class                    border     backgr.    text       indicator    child_border
 
-client.focused             $bcyan     $bblue     $black     $red         $black
-client.focused_inactive    $black     $cblack    $bblack    $red         $black
-client.unfocused           $black     $bcyan     $bblack    $red         $black
-client.urgent              $magenta   $magenta   $cwhite    $red         $bred
-client.placeholder         $bmagenta  $bmagenta  $cwhite    $red         $bred
+client.focused             $green     $green     $black     $yellow      $black
+client.focused_inactive    $red       $red       $black     $yellow      $black
+client.unfocused           $bcyan     $bcyan     $black     $yellow      $black
+client.urgent              $magenta   $magenta   $cwhite    $yellow      $bred
+client.placeholder         $bmagenta  $bmagenta  $cwhite    $yellow      $bred
 
 client.background          $cwhite
 
@@ -66,14 +66,14 @@ bar {
         font pango:Inconsolata Bold for Powerline bold 8
 
         colors {
-        background $black
+        background $cyan
         statusline $byellow
         separator  $bblack
         
         #class                border     background  text
-        focused_workspace     $bblue     $bblue      $black
-        active_workspace      $black     $black      $bblue
-        inactive_workspace    $black     $black      $bblue
+        focused_workspace     $green     $green      $black
+        active_workspace      $black     $black      $bgreen
+        inactive_workspace    $cyan      $cyan       $black
         urgent_workspace      $magenta   $magenta    $cwhite
         binding_mode          $green     $green      $black
 
