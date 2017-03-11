@@ -33,7 +33,7 @@ set  $magenta   #e02c6d
 set  $bmagenta  #C45AEC
 
 set  $cyan      #024354
-set  $bcyan     #2c3e50
+set  $bcyan     #d74937
 
 set  $white     #707573
 set  $bwhite    #707573
@@ -45,8 +45,8 @@ set  $cwhite    #F2F2F2
 # Class                    border     backgr.    text       indicator    child_border
 
 client.focused             $green     $green     $black     $yellow      $black
-client.focused_inactive    $red       $red       $black     $yellow      $black
-client.unfocused           $bcyan     $bcyan     $black     $yellow      $black
+client.focused_inactive    $bcyan     $bcyan     $black     $yellow      $black
+client.unfocused           $bgreen    $bgreen    $black     $yellow      $black
 client.urgent              $magenta   $magenta   $cwhite    $yellow      $bred
 client.placeholder         $bmagenta  $bmagenta  $cwhite    $yellow      $bred
 
