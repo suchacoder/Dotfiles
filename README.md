@@ -6,7 +6,7 @@ The global CSS style it's based on cirrusUK's gist: https://gist.github.com/cirr
 
 GTK Theme: https://github.com/Ferdi265/numix-solarized-gtk-theme
 
-![Screenshot of my terminal urxvt] (http://i.imgur.com/N2jaEV8.png)
+![Screenshot of my terminal urxvt] (http://i.imgur.com/p7VEmR3.png)
 
 ![Screenshot of my firefox home page] (http://i.imgur.com/bkXfEEi.png)
 
