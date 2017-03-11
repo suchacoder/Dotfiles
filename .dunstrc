@@ -175,18 +175,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#121212"
-    foreground = "#E0301E"
+    background = "#052832"
+    foreground = "#f39c12"
     timeout = 10
 
 [urgency_normal]
-    background = "#121212"
-    foreground = "#736AFF"
+    background = "#006666"
+    foreground = "#f39c12"
     timeout = 10
 
 [urgency_critical]
-    background = "#B000DF"
-    foreground = "#F2F2F2"
+    background = "#2c3e50"
+    foreground = "#e02c6d"
     timeout = 0
 
 
@@ -252,6 +252,4 @@
 [irc]
     appname = irssi
     timeout = 0
-    background = "#E0301E"
-    foreground = "#121212"
     urgency = low
