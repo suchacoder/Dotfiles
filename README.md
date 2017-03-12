@@ -8,11 +8,8 @@ GTK Theme: https://github.com/Ferdi265/numix-solarized-gtk-theme
 
 ![Screenshot of my terminal urxvt] (http://i.imgur.com/p7VEmR3.png)
 
-
 ![Screenshot of my firefox home page] (http://i.imgur.com/bkXfEEi.png)
 
-
 ![Screenshot of arch wiki page] (http://i.imgur.com/TQJoEQU.png)
-
 
 ![Screenshot of arch wiki iptables page] (http://i.imgur.com/jobeTIg.png)
