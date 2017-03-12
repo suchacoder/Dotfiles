@@ -2,7 +2,7 @@
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
 #define xbackground #052832
-#define xforeground #707573
+#define xforeground #999999
 #define xcursor     #e0301e
 
 #define black       #052832
