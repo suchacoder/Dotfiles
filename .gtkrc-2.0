@@ -9,7 +9,7 @@ widget_class "*" style "myfont"
 gtk-font-name = "Inconsolata Bold for Powerline 9"
 
 # Icon theme
-gtk-icon-theme-name = "UltraFlatIconsOrangeDark"
+gtk-icon-theme-name = "UltraFlatIconsGreenDark"
 
 # Toolbar style
 gtk-toolbar-style = GTK_TOOLBAR_ICONS
