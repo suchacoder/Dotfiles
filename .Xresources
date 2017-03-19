@@ -8,26 +8,26 @@
 #define black       #052832
 #define bblack      #707573
 
-#define red         #b58900
-#define bred        #c1121b
+#define red         #c45aec
+#define bred        #559eb3
 
-#define green       #006666
+#define green       #b58900
 #define bgreen      #7d9002
 
-#define yellow      #E0301E
-#define byellow     #F39c12
+#define yellow      #e0301e
+#define byellow     #16a085
 
-#define blue        #6b582a
+#define blue        #d74937
 #define bblue       #428BCA
 
-#define magenta     #e02c6d
-#define bmagenta    #C45AEC
+#define magenta     #a03470
+#define bmagenta    #9360a2
 
-#define cyan        #16a085
-#define bcyan       #d74937
+#define cyan        #e02c6d
+#define bcyan       #8c95dd
 
-#define white       #707573
-#define bwhite      #707573
+#define white       #93a1a1
+#define bwhite      #576e74
 
 ! ------------------------------------------------------------------------------
 ! Settin up Color Scheme
