@@ -8,8 +8,8 @@
 #define black       #052832
 #define bblack      #707573
 
-#define red         #c45aec
-#define bred        #559eb3
+#define red         #d74937
+#define bred        #e02c6d
 
 #define green       #b58900
 #define bgreen      #7d9002
@@ -17,14 +17,14 @@
 #define yellow      #e0301e
 #define byellow     #16a085
 
-#define blue        #d74937
-#define bblue       #428BCA
+#define blue        #428BCA
+#define bblue       #559eb3
 
 #define magenta     #a03470
 #define bmagenta    #9360a2
 
-#define cyan        #e02c6d
-#define bcyan       #8c95dd
+#define cyan        #8c95dd
+#define bcyan       #c45aec
 
 #define white       #93a1a1
 #define bwhite      #576e74
