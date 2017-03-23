@@ -1,0 +1,25 @@
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Prompt
+test "$SSH_CONNECTION" &&
+  HOST_ADDRESS="`echo "$SSH_CONNECTION" | awk '{print $3}'`"
+
+if [ $USER = root ]; then
+    USER_COLOR_PROMPT="\[\e[01;31m\]"
+  else
+    USER_COLOR_PROMPT="\[\e[01;30m\]"
+fi
+
+if [ "$SSH_CONNECTION" ]; then
+    PS1="$USER_COLOR_PROMPT┌ \[\e[01;31m\]\u@$HOST_ADDRESS \[\e[01;30m\][\[\e[01;31m\]\w\[\e[01;30m\]]\n$USER_COLOR_PROMPT└─ > \[\e[0m\]"
+  else
+    PS1="$USER_COLOR_PROMPT┌ \[\e[01;30m\][\e[01;33m\]\w\[\e[01;30m\]]\n$USER_COLOR_PROMPT└─ > \[\e[0m\]"
+fi
+
+# set title if running in a terminal window
+test $TERM != linux &&
+  if [ "$SSH_CONNECTION" ]; then
+      PS1="\[\e]0;urxvt [$HOST_ADDRESS]\a\]$PS1"
+    else
+      PS1="\[\e]0;urxvt [\W]\a\]$PS1"
+  fi
