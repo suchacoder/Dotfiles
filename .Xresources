@@ -2,7 +2,7 @@
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
 #define xbackground #052832
-#define xforeground #999999
+#define xforeground #77ab59
 #define xcursor     #e0301e
 
 #define black       #052832
@@ -26,8 +26,8 @@
 #define cyan        #8c95dd
 #define bcyan       #c45aec
 
-#define white       #93a1a1
-#define bwhite      #576e74
+#define white       #576e74
+#define bwhite      #93a1a1
 
 ! ------------------------------------------------------------------------------
 ! Settin up Color Scheme
