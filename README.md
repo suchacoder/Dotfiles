@@ -6,8 +6,8 @@ The global CSS style it's based on cirrusUK's gist: https://gist.github.com/cirr
 
 GTK Theme: https://github.com/Ferdi265/numix-solarized-gtk-theme
 
-![Screenshot of my terminal urxvt] (http://i.imgur.com/7w1xSZJ.png)
+![Screenshot of my terminal urxvt] (http://i.imgur.com/PbRYnhD.png)
 
-![Screenshot of my firefox home page] (http://i.imgur.com/B1UtIEw.png)
+![Screenshot of my firefox home page] (https://ibb.co/e25CJv)
 
-![Screenshot of arch wiki iptables page] (http://i.imgur.com/E8Hg46Y.png)
+![Screenshot of arch wiki iptables page] (https://ibb.co/dfb8rF)
