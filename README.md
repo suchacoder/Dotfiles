@@ -10,4 +10,4 @@ GTK Theme: https://github.com/Ferdi265/numix-solarized-gtk-theme
 
 ![Screenshot of my firefox home page] (https://ibb.co/e25CJv)
 
-![Screenshot of arch wiki iptables page] (https://ibb.co/dfb8rF)
+![Screenshot of arch wiki iptables page] (http://i.imgur.com/P2v6Cyb.png)
