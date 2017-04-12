@@ -5,16 +5,19 @@ test "$SSH_CONNECTION" &&
   HOST_ADDRESS="`echo "$SSH_CONNECTION" | awk '{print $3}'`"
 
 if [ $USER = root ]; then
-    USER_COLOR_PROMPT="\[\e[01;31m\]"
+    USER_COLOR_PROMPT="\e[01;34m\]"
   else
-    USER_COLOR_PROMPT="\[\e[01;30m\]"
+    USER_COLOR_PROMPT="\e[01;31m\]"
 fi
 
+
 if [ "$SSH_CONNECTION" ]; then
-    PS1="$USER_COLOR_PROMPT┌ \[\e[01;31m\]\u@$HOST_ADDRESS \[\e[01;30m\][\[\e[01;31m\]\w\[\e[01;30m\]]\n$USER_COLOR_PROMPT└─ > \[\e[0m\]"
+    PS1="\[$USER_COLOR_PROMPT\u \[\e[01;34m\]@ \[\e[01;33m\]$HOST_ADDRESS \[\e[01;35m\]\w\[$USER_COLOR_PROMPT > \[\e[0m\]"
   else
-    PS1="$USER_COLOR_PROMPT┌ \[\e[01;30m\][\e[01;33m\]\w\[\e[01;30m\]]\n$USER_COLOR_PROMPT└─ > \[\e[0m\]"
+    PS1="\[\e[01;33m\]\w\[$USER_COLOR_PROMPT > \[\e[0m\]"
 fi
+
+# \[\e[01;35m\]\$? <--- exit status
 
 # set title if running in a terminal window
 test $TERM != linux &&
