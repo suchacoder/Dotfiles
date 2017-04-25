@@ -17,38 +17,41 @@ set  $black     #052832
 set  $bblack    #707573
 set  $cblack    #024354
 
-set  $red       #b58900
-set  $bred      #c1121b
+set  $red       #d74937
+set  $bred      #e02c6d
 
-set  $green     #7d9002
-set  $bgreen    #006666
+set  $green     #b58900
+set  $bgreen    #7d9002
+set  $focused   #2e9182
+set  $unfocused #1d817e
 
 set  $yellow    #E0301E
-set  $byellow   #F39c12
+set  $byellow   #16a085
 
-set  $blue      #428BCA
-set  $bblue     #16a085
+set  $blue      #428bca
+set  $bblue     #559eb3
 
-set  $magenta   #e02c6d
-set  $bmagenta  #C45AEC
+set  $magenta   #a03470
+set  $bmagenta  #9360a2
 
-set  $cyan      #024354
-set  $bcyan     #d74937
+set  $cyan      #8c95dd
+set  $bcyan     #c45aec
 
-set  $white     #707573
-set  $bwhite    #707573
+set  $white     #576e74
+set  $bwhite    #93a1a1
 set  $cwhite    #F2F2F2      
 
+set  $i3status  #006666
 
 # Window color scheme
 
 # Class                    border     backgr.    text       indicator    child_border
 
-client.focused             $bcyan     $bcyan     $black     $yellow      $black
-client.focused_inactive    $green     $green     $black     $yellow      $black
-client.unfocused           $bgreen    $bgreen    $black     $yellow      $black
-client.urgent              $magenta   $magenta   $cwhite    $yellow      $bred
-client.placeholder         $bmagenta  $bmagenta  $cwhite    $yellow      $bred
+client.focused             $byellow   $byellow   $cwhite     $yellow      $black
+client.focused_inactive    $focused   $focused   $black     $yellow      $black
+client.unfocused           $unfocused $unfocused $black     $yellow      $black
+client.urgent              $bred      $bred      $cwhite    $yellow      $bred
+client.placeholder         $red       $red       $cwhite    $yellow      $bred
 
 client.background          $cwhite
 
@@ -60,22 +63,22 @@ client.background          $cwhite
 bar {
         #status_command i3status -c ~/.config/i3/i3status.conf
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        position top
+        position bottom
 	mode dock
         tray_output none
         font pango:Inconsolata Bold for Powerline bold 8
 
         colors {
-        background $cyan
+        background $i3status
         statusline $byellow
         separator  $bblack
         
         #class                border     background  text
-        focused_workspace     $green     $green      $black
-        active_workspace      $black     $black      $bgreen
-        inactive_workspace    $cyan      $cyan       $black
-        urgent_workspace      $magenta   $magenta    $cwhite
-        binding_mode          $green     $green      $black
+        focused_workspace     $byellow   $byellow    $cwhite
+        active_workspace      $i3status  $i3status   $bgreen
+        inactive_workspace    $i3status  $i3status   $black
+        urgent_workspace      $bred      $bred       $cwhite
+        binding_mode          $byellow   $byellow    $black
 
     }
 }
@@ -86,7 +89,7 @@ set $workspace2 "&#xf269;"
 set $workspace3 "&#xf16a;"
 set $workspace4 "&#xf11b;"
 set $workspace5 "&#xf1d7;"
-set $workspace6 "&#xf0ad;"
+set $workspace6 "&#xf15a;"
 set $workspace7 "&#xf1fc;"
 set $workspace8 "&#xf140;"
 set $workspace9 "&#xf019;"
@@ -219,7 +222,7 @@ bindsym $mod+a focus parent
 for_window [class="Gpick|Pavucontrol|Mumble|Event Tester|NoScript Options"] floating enable,move absolute center
 for_window [class="feh"] fullscreen enable
 for_window [class="Steam" title="Friends|*Chat|Steam - Update News"] floating enable,move absolute center
-for_window [class="Radiant.bin" title="Patch density|Entities|Q3Map debug window|Arbitrary sides|Thicken Patch|Surface Inspector|Available Scripts - Not Implemented Yet|Cap|Information|Map Info|Gamma|Find Brush"] floating enable,move absolute center
+for_window [class="Radiant" title="Patch density|Entities|Q3Map debug window|Arbitrary sides|Thicken Patch|Surface Inspector|Available Scripts - Not Implemented Yet|Cap|Information|Map Info|Gamma|Find Brush"] floating enable,move absolute center
 for_window [window_role="pop-up"] floating enable,move absolute center
 for_window [window_role="task_dialog"] floating enable,move absolute center
 
@@ -283,13 +286,13 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="^URxvt$"] $workspace1
 
 # Assign firefox epiphany and qutebrowser to workspace 2
-assign [class="Firefox|qutebrowser|Epiphany"] $workspace2
+assign [class="Firefox|qutebrowser|Epiphany|Chromium|Remmina"] $workspace2
 
 # Assign mpv to workspace 3
 assign [class="mpv"] $workspace3
 
 # Assign urban terror and steam to workspace 4
-assign [class="urban_42|urban_64|Steam|Wine"] $workspace4
+assign [class="urban_42|urban_64|urbanterror|Steam|Wine|Radiant"] $workspace4
 
 # Assign skype to workspace 5
 assign [class="skypeforlinux|TeamSpeak 3|discord"] $workspace5
@@ -297,8 +300,8 @@ assign [class="skypeforlinux|TeamSpeak 3|discord"] $workspace5
 # Assign vlc to workspace 3
 assign [class="Vlc"] $workspace3
 
-# Assign radiant to workspace 6
-assign [class="Radiant.bin"] $workspace6
+# Assign Electrum to workspace 6
+assign [class="Electrum"] $workspace6
 
 # Assign gimp to workspace 7
 assign [class="Gimp"] $workspace7
@@ -345,18 +348,21 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opaci
 
 # Press $mod+o to use the 'mode launcher' and Return or Esc to go back at the default mode
 
-set $mode_launcher Launch: [D]iscord [G]pick [J]downloader [P]avucontrol [S]team [T]eamspeak [U]rban [X]fburn [W]allpaper
+set $mode_launcher Launch: [D]iscord [E]lectrum [F]irefox-Dev [G]pick [J]downloader [P]avucontrol [R]adiant [S]team [T]eamspeak [U]rban [X]fburn [W]allpaper
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
     bindsym d exec discord
+    bindsym e exec electrum
+    bindsym f exec ~/firefox/firefox
     bindsym g exec gpick
     bindsym j exec jdownloader
     bindsym t exec teamspeak
     bindsym p exec pavucontrol
+    bindsym r exec radiant
     bindsym s exec steam-native
-    bindsym u exec ~/urban_terror/urban_64 +set fs_homepath ~/urban_terror/
+    bindsym u exec urbanterror +set fs_homepath /opt/urbanterror/
     bindsym x exec xfburn
     bindsym w exec ~/bin/wallpaper.sh
 #   bindsym r exec urxvtc -e rtorrent
@@ -432,7 +438,7 @@ exec --no-startup-id urxvtd &
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf &
 
 # Exec wallpaper script 
-exec_always --no-startup-id ~/bin/wallpaper.sh
+exec_always --no-startup-id ~/bin/wallpaper
 
 # Start dunst notification daemon
 exec --no-startup-id dunst -config ~/.dunstrc
