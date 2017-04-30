@@ -7,9 +7,6 @@ else
    export TERM='xterm-color'
 fi
 
-# Old way to get an uniform qt gtk look
-#export QT_STYLE_OVERRIDE='gtk2'
-
 # Uniform look between gtk and qt apps using qt5ct configuration utility
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
@@ -29,7 +26,6 @@ export XDG_DATA_HOME
 
 # If user ID is greater than or equal to 1000 & if ~/bin exists and is a directory & if ~/bin is not already in your $PATH
 # then export ~/bin to your $PATH.
-
 if [[ $UID -ge 1000 && -d $HOME/bin && -z $(echo $PATH | grep -o $HOME/bin) ]]
 then
     export PATH=$HOME/bin:${PATH}
@@ -55,8 +51,6 @@ export HISTFILESIZE=1000
 # improved bash history
 export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
 
-export POWERLINE_CONFIG_COMMAND="/usr/bin/powerline-config"
-
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -69,3 +63,9 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
+
+# Old way to get an uniform qt gtk look
+#export QT_STYLE_OVERRIDE='gtk2'
+
+# path to powerline config binary used by tmux
+#export POWERLINE_CONFIG_COMMAND="/usr/bin/powerline-config"
