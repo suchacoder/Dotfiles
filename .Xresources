@@ -80,7 +80,7 @@ Xft.lcdfilter: lcddefault
 URxvt*termName: rxvt
 
 ! Font
-URxvt*font: xft:inconsolata:pixelsize=15
+URxvt.font: xft:Inconsolata for Powerline:size=11:style=Medium
 !URxvt.letterSpace: 1
 
 ! Cursor
