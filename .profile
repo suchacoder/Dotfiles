@@ -1,5 +1,12 @@
 # Exporting some settings and default applications
 
+# Setting TERM glob var to a 256 color to fix some issues like airline colors
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+   export TERM='xterm-256color'
+else
+   export TERM='xterm-color'
+fi
+
 # Old way to get an uniform qt gtk look
 #export QT_STYLE_OVERRIDE='gtk2'
 
@@ -47,6 +54,8 @@ export HISTFILESIZE=1000
 
 # improved bash history
 export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
+
+export POWERLINE_CONFIG_COMMAND="/usr/bin/powerline-config"
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
