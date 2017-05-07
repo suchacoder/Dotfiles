@@ -26,3 +26,13 @@ test $TERM != linux &&
     else
       PS1="\[\e]0;urxvt [\W]\a\]$PS1"
   fi
+
+#-----------------------------------------------------------------------
+#  Bash-support VIM
+#  set Bash prompts
+#  PS4 shows the function name when execution is inside a function and
+#  the xtrace option is set.
+#-----------------------------------------------------------------------
+export PS2='\[\e[01;33m\]continue\[$USER_COLOR_PROMPT > '
+export PS3='\[\e[01;33m\]choose\[$USER_COLOR_PROMPT: '
+export PS4='|${BASH_SOURCE} ${LINENO}${FUNCNAME[0]:+ ${FUNCNAME[0]}()}|  '

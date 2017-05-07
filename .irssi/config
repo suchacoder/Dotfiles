@@ -131,7 +131,7 @@ channels = (
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#linux"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#i3"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#qutebrowser"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#vim"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {
