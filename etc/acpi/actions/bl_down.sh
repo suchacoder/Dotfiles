@@ -1,2 +1,4 @@
-event=video/brightnessdown BRTDN 00000087 00000000 K
-action=/etc/acpi/actions/bl_down.sh
+#!/bin/sh
+
+bl_device=/sys/class/backlight/intel_backlight/brightness
+echo $(($(cat $bl_device)-10)) | sudo tee $bl_device
