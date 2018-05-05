@@ -1,0 +1,466 @@
+#!/usr/bin/perl
+
+# Log file firewall reporter
+# for use with iptables
+# By Chris Travers
+# chris@travelamericas.com
+
+# this script assumes that the only log messages that contain kernel:, SRC=,
+# and DST= are IPTable entries.
+
+$version = "1.1.7";
+
+$sort_algor = "sort_ipaddr";
+
+use POSIX;
+
+$counter = 0;
+while ($ARGV[$counter]){
+
+        if ($ARGV[$counter] =~ /^\-\w*f/ &&
+                        ($ARGV[$counter] =~ /d/ || $ARGV[$counter] =~ /m/
+			|| $ARGV[$counter] =~ /t/)){
+		print "Invalid Command Line:\n";
+                print ("Cannot combine -f in the same argument with -t, -m, or -d.\n"
+                        . "Please separate into different arguments.\n");
+		exit 1;
+        }
+
+        if ($ARGV[$counter] =~ /^\-\w*m/ && $ARGV[$counter] =~ /d/) {
+		print "Invalid Command Line:\n";
+                print "Cannot run monthly and daily reports at the same time\n";
+        }
+
+	if ($ARGV[$counter] eq "--month" || $ARGV[$counter] =~ /^\-\w*m/) {
+		if ($daily == 1 || $whole_file == 1){
+			print "Invalid Command Line:\n";
+			print "Cannot run monthly and daily or whole-file reports at once\n";
+			exit 1;
+		}
+		$month=$ARGV[$counter + 1];
+		$monthly = 1;
+		if ($no_daily != 1){
+			$daily = 1;
+		}
+		$match_str=$month;
+	}
+	if ($ARGV[$counter] eq "--day" || $ARGV[$counter] =~ /^\-\w*d/) {
+		$month=$ARGV[$counter + 1];
+		$day=$ARGV[$counter + 2];
+		$daily = 1;
+		if ($monthly == 1 || $whole_file == 1){
+			print "Invalid Command Line:\n";
+			print "Cannot run monthly or whole-file and daily reports at once\n";
+			exit 1;
+		}
+		if ($day){ 
+			if ($day < 10){
+				$day=" $day"; # adding a space in front
+			}
+		}
+
+		$match_str="$month $day";
+	}
+	if ($ARGV[$counter] eq "--whole-file" || $ARGV[$counter] =~ /\-\w*w/){
+		if ($daily || $monthly){
+			print "Invalid Command Line:\n";
+			print "Cannot use --whole-file or -w with monthly or daily reports!\n";
+			exit 1;
+		}
+		if ($no_daily != 1){
+			$daily = 1;
+		}
+		$whole_file = 1;
+		$monthly = 1;
+		$match_str = "";
+	}
+	if ($ARGV[$counter] eq "--localize" || $ARGV[$counter] =~ /\-\w*l/){
+		$do_localize = 1;
+	}
+
+	if ($ARGV[$counter] eq "--file" || $ARGV[$counter] =~ /^\-\w*f/){
+		if ($use_stdin == 1){
+			print "Invalid command line:\n";
+			print "Cannot use -f or --file with -s or --stdin\n";
+			exit 1;
+		}
+		$log_path= $ARGV[$counter + 1];
+	}
+
+	if ($ARGV[$counter] eq "--stdin" || $ARGV[$counter] =~ /^\-\w*s/){
+		if ($log_path){
+			print "Invalid command line:\n";
+			print "Cannot use -f or --file with -s or --stdin\n";
+			exit 1;
+		}
+		$use_stdin = 1;
+	}
+
+	if ($ARGV[$counter] eq "--no-daily" || $ARGV[$counter] =~ /^\-\w*n/){
+		if (($daily == 1 || $whole_file == 1) && $monthly != 1){
+			print "Invalid Command Line:\n";
+			print "-n or --no-daily is only valid on monthly or whole-file mode";
+			print "Monthly=$monthly, daily=$daily\n";
+			exit 1;
+		}
+		$daily = 0;
+		$no_daily=1;
+	}
+
+	if ($ARGV[$counter] eq "--no-rdns" || $ARGV[$counter] =~ /^\-\w*r/){
+		$no_rdns = 1;
+	}
+
+	if ($ARGV[$counter] eq "--quiet" || $ARGV[$counter] =~ /^\-\w*q/){
+		$quiet = 1;
+	}	
+
+	if ($ARGV[$counter] eq "--t-minus" || $ARGV[$counter] =~ /^\-\w*t/){
+		# time before now to use for reports in days.
+		$t_minus_flag = 1;
+		$t_minus = $ARGV[$counter + 1];
+		if ($t_minus !~ /^\d+$/){
+			print "Invalid command line:\n";
+			print "T_Minus must be a non-negative integer\n";
+			exit 1;
+		}
+	}
+
+	if ($ARGV[$counter] eq "--sort-hits" || $ARGV[$counter] =~ /^\-\w*H/){
+		$sort_algor = "sort_hits";
+	}
+
+	if ($ARGV[$counter] eq "--help" || $ARGV[$counter] eq '-h') {
+
+		print_help();
+		exit 0;
+	}
+
+	if ($ARGV[$counter] eq "--version") {
+		print "FWReport v$version\n";
+		exit 0;
+	}
+	
+	++$counter;
+}
+if ($daily != 1 && $monthly != 1) {
+	print_help();
+	exit 1;
+}
+
+if ($t_minus_flag){
+	@t_time = localtime(time - (86400 * $t_minus));
+	$month = strftime ('%b', @t_time);
+	$day = strftime ('%e', @t_time);
+	if ($monthly == 1){
+		$match_str = "$month";
+	}
+	else {
+		$match_str = "$month $day";
+	}
+}
+
+if ($do_localize == 1){
+	$localized_month = convert_locale($month);
+	$match_str =~ s/$month/$localized_month/;
+	$month = $localized_month;
+}
+
+if (validate_date($month, $day) == 0 && $whole_file != 1){
+	print "Invalid date error.\n";
+	exit 1;
+}
+
+if ($use_stdin == 1){
+	$log = "STDIN";
+}
+else {
+	if (!$log_path){
+		$log_path = "/var/log/messages";
+	}
+
+	open (LOG, $log_path) || die "Can't open logfile: $! \n";
+	$log = "LOG";
+}
+
+if ($quiet != 1){
+	print {STDERR} "Parsing log file.......\n";
+}
+
+while ($line=<$log>){
+	if ($line =~ /^$match_str/ 
+		&& $line =~ /kernel:/
+		&& $line =~ /SRC=/
+		&& $line =~ /DST=/
+	){
+		@elements = split(/ +/, $line);
+		$line_element{"Mon"} = $elements[0];
+		$line_element{"Day"} = $elements[1];
+		foreach $element (@elements){
+			if ($element =~ /^SRC=/){
+				@sub_elements = split(/=/, $element);
+				$line_element{"ip_addr"} = $sub_elements[1];
+			}
+			if ($element =~ /^IN=/){
+				@sub_elements = split(/=/, $element);
+				$line_element {"iface"} = $sub_elements[1];
+			}
+			if ($element =~ /^DPT=/ || $element =~ /^TYPE=/){
+				@sub_elements = split (/=/, $element);
+				$line_element {"port"} = $sub_elements[1];
+			}
+			if ($element =~ /^PROTO=/){
+				@sub_elements = split (/=/, $element);
+				$line_element {"proto"} = $sub_elements[1];
+			}
+		}
+		$line_month=$line_element{"Mon"};
+		$line_day=$line_element{"Day"};
+
+		#  the following repition should be broken off to a separate
+ 		#  function.  Will target for the next minor release
+
+		if ($daily == 1){
+			incriment_hits($line_day);
+		}
+		if ($monthly == 1) {
+			incriment_hits("monthly");
+		}
+		if ($no_rdns != 1){
+			if (!$ip_addr{$line_element{"ip_addr"}}{"name"}){
+				$ip=pack C4, 
+					split (/\./, $line_element{"ip_addr"});
+				$name = gethostbyaddr ($ip, "2");      
+				if (!$name){
+					$name="NULL";
+				}
+				$ip_addr{$line_element{"ip_addr"}}{"name"} 
+					= $name;
+			}
+			$master{$line_day}{$line_element{"proto"}}
+					{$line_element{"port"}}
+					{$line_element{"ip_addr"}}
+					{"name"} 
+				= 
+				$ip_addr{$line_element{"ip_addr"}}
+					{"name"};
+			if ($monthly == 1){
+
+				$master{"monthly"}{$line_element{"proto"}}
+						{$line_element{"port"}}
+						{$line_element{"ip_addr"}}
+						{"name"}
+					=
+					$ip_addr{$line_element{"ip_addr"}}
+						{"name"};
+
+			}
+		}
+	}
+} 
+close (LOG);
+
+if ($quiet !=1){
+	print {STDERR} "Associating ports with services.....\n";
+}
+foreach $date (keys %master){
+	@protos=keys(%{$master{$date}});
+	foreach $proto (@protos){
+		foreach $port (%{$master{$date}{$proto}}){
+			if ($proto eq "ICMP"){
+				$service=get_icmp_info ($port);
+			}
+			else {		
+				$service=getservbyport ($port, lc ($proto));
+			}
+			if (!$service){
+				$service="Unknown";
+			}
+			$master{$date}{$proto}{$port}{"service"}=$service;
+		}
+	}
+}
+
+print"=====================Firewall Log report==============================\n";
+if ($whole_file == 1){
+	print "Whole File Edition for $log_path\n";
+}
+
+elsif ($monthly == 1){
+	print "Monthly Edition for month of $month\n";
+}
+else {
+	print "Daily edition for $month $day\n";
+}
+print "Generated by: FWReport $version\n";
+print"======================================================================\n";
+
+
+foreach $date (sort {sort_date($a, $b)} keys %master){
+	if ($monthly == 1){
+		if ($date eq "monthly"){
+			if ($whole_file != 1){
+				print "Monthly Summary:\n";
+				print "=====================\n";
+			}
+			else {
+				print "File Summary:\n";
+				print "====================\n";
+			}
+		}
+		else {
+			print "$month $date :\n";
+			print "========================\n";
+		}
+	}
+    
+	foreach $proto (sort keys %{$master{$date}}){
+		print "==================================\n";
+		print "Transport Level Protocol: $proto\n";
+		foreach $port (sort {$a <=> $b} keys %{$master{$date}{$proto}}){
+			if ($port <= 0){
+				next;
+			}
+			print "===================================\n";
+			print "Port number: " . $port . "\n";
+			print "Used by service: " . $master{$date}{$proto}
+				{$port}{"service"} . "\n";
+			print "===================================\n";
+
+			print "# Hits    Address            Name\n";
+
+		    
+REPLINE:		foreach $ip_addr (sort {&$sort_algor($a, $b)} 
+					keys %{$master{$date}{$proto}
+					  {$port}}){
+				if ($ip_addr eq "service") {
+				    next REPLINE;
+				}
+				$hits=$master{$date}{$proto}{$port}{$ip_addr}
+					{"hits"};
+				$name=$master{$date}{$proto}{$port}{$ip_addr}
+					{"name"};
+				if ($name eq "NULL" || $name eq ""){
+				        $name="-";
+				}
+				$~="REPORT_LINE";
+				write;
+			}
+	        }
+	}
+print"======================================================================\n";
+}
+
+########  Functions, Reports, Etc
+    
+sub sort_date {
+	if ($_[0] eq "monthly") {
+		return -1;
+	}
+	elsif ($_[1] eq "monthly") {
+		return 1;
+	}
+	else {
+		return ($_[0] <=> $_[1]);
+	}
+}
+
+sub sort_ipaddr {
+	@ip1 = split ('\.', $_[0]);
+	@ip2 = split ('\.', $_[1]);
+	if (($retval = ($ip1[0] <=> $ip2[0])) == 0){
+		if (($retval = $ip1[1] <=> $ip2[1]) == 0){
+			if (($retval = $ip1[2] <=> $ip2[2]) == 0){
+				$retval = $ip1[3] <=> $ip2[3];
+			}
+		}
+	}
+	return $retval;
+}
+
+sub sort_hits ($$){
+	return (%{$master{$date}{$proto}{$port}{$_[0]}{"hits"}}
+		<=>
+		%{$master{$date}{$proto}{$port}{$_[1]}{"hits"}});
+
+}
+sub incriment_hits { 
+	if ($master {$_[0]}
+		{$line_element{"proto"}}
+		{$line_element{"port"}}
+		{$line_element{"ip_addr"}}{"hits"}
+	){
+		++$master {$_[0]}
+			{$line_element{"proto"}}
+			{$line_element{"port"}}
+			{$line_element{"ip_addr"}}
+			{"hits"};
+	}
+	else {
+		$master {$_[0]}
+			{$line_element{"proto"}}
+			{$line_element{"port"}}
+			{$line_element{"ip_addr"}}
+			{"hits"} = 1;
+	}
+
+}
+sub print_help {
+	print "FWReport Version $version\n";
+	print "Syntax:\n";
+	print "fwreport [-rslnq] {--month | -m} <month> [-f <logfile>]\n";
+	print "fwreport [-rslq] {--day | -d} <month> <day> [-f <logfile>]\n";
+	print "fwreport [-rslq] {--day | --month | -m | -d} -t <days> [-f <logfile>]\n";
+	print "fwreport [-rslq] {--whole-file | -w} [-f <logfile>]\n";
+	print "fwreport {--version | --help}\n";
+}
+
+sub convert_locale ($){ 
+	my $month = pop @_;
+	my %locale = ( 'Fev' => 'Feb', 'Abr' => 'Apr', 'Mai' => 'May',
+		'Ago' => 'Aug', 'Set'=> 'Sep', 'Out' => 'Oct', 'Dez' => 'Dec');
+	if (exists ($locale{$month})){
+		return $locale{$month};
+	}
+	return $month;
+}
+
+sub validate_date {
+	my $month = @_[0];
+	my $day = @_[1];
+	my %months = ('Jan' => 31, 'Feb' => 29, 'Mar' => 31, 'Apr' => 30, 
+		'May' => 31, 'Jun' => 30, 'Jul' => 31, 'Aug' => 31, 
+		'Sep' => 30, 'Oct' => 31, 'Nov' => 30, 'Dec' => 31);
+	if (exists $months{$month} && (!$day || $day <= $months{$month})){
+		return 1;
+	} 
+	else {
+		return 0;
+	}
+}
+
+sub get_icmp_info ($){
+	my $type = pop @_;
+	my %types = (
+		'0' => "Echo Reply",
+		'3'=> "Destination Unreachable",
+		'4' => "Source Quench",
+		'5' => "Redirect",
+		'8' => "Echo Request",
+		'11' => "Time Exceeded",
+		'12' => "Parameter Problem",
+		'13' => "Timestamp",
+		'14' => "Timestamp Reply",
+		'15' => "Information",
+		'16' => "Information Reply"
+	);
+	if (exists($types{$type})){
+		return $types{$type};
+	}
+	return "Type Unknown";
+}
+		
+format REPORT_LINE =
+@<<<<<<   @<<<<<<<<<<<<<<<   @<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+$hits, $ip_addr, $name
+.
