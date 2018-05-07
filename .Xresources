@@ -1,33 +1,33 @@
 ! ------------------------------------------------------------------------------
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
-#define xbackground #052832
-#define xforeground #658899
-#define xcursor     #49796b
+#define xbackground #212733
+#define xforeground #d0cec3
+#define xcursor     #d0cec3
 
-#define black       #052832
-#define bblack      #707573
+#define black       #191d26
+#define bblack      #555555
 
-#define red         #d74937
-#define bred        #e02c6d
+#define red         #ea5965
+#define bred        #ea5965
 
-#define green       #b58900
-#define bgreen      #7d9002
+#define green       #ade46b
+#define bgreen      #c1e436
 
-#define yellow      #e0301e
-#define byellow     #16a085
+#define yellow      #fec254
+#define byellow     #fed96d
 
-#define blue        #428BCA
-#define bblue       #559eb3
+#define blue        #2d91d0
+#define bblue       #5555ff
 
-#define magenta     #a03470
-#define bmagenta    #9360a2
+#define magenta     #c9aeff
+#define bmagenta    #ff55ff
 
-#define cyan        #8c95dd
-#define bcyan       #c45aec
+#define cyan        #86e2bf
+#define bcyan       #99ffda
 
-#define white       #576e74
-#define bwhite      #93a1a1
+#define white       #bbbbbb
+#define bwhite      #ffffff
 
 ! ------------------------------------------------------------------------------
 ! Settin up Color Scheme
@@ -81,7 +81,7 @@ URxvt*termName: rxvt
 
 ! Font
 URxvt.font: xft:Inconsolata for Powerline:size=11:style=Medium
-!URxvt.letterSpace: 1
+URxvt.letterSpace: -1
 
 ! Cursor
 URxvt.cursorBlink: 0
@@ -124,8 +124,13 @@ URxvt*metaSendsEscape: true
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
-rofi.color-enabled: true
-rofi.color-window: #002b36, #002b36, #7d9002
-rofi.color-normal: #002b36, #eee8d5, #002b36, #002b36, #f39c11
-rofi.color-active: #002b36, #eee8d5, #002b36, #002b36, #f39c11
-rofi.color-urgent: #002b36, #dc322f, #002b36, #002b36, #e02c6d
+rofi.color-enabled:		 true
+rofi.separator-style:	 solid
+rofi.hide-scrollbar:	 true
+rofi.color-window:		 #212733, #ffcc66, #738699
+rofi.color-normal:		 #212733, #d9d7ce, #212733, #d9d7ce, #212733
+rofi.font:               Roboto regular 12
+rofi.bw:                 1
+rofi.padding:            15
+rofi.lines:              6
+
