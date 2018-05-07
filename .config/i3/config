@@ -11,51 +11,55 @@
 
 set $mod Mod4
 
+#######################
+# Setting some colors #
+#######################
 
-# Setting some colors
-set  $black     #052832
-set  $bblack    #707573
-set  $cblack    #024354
+set  $background #212733
 
-set  $red       #d74937
-set  $bred      #e02c6d
+set  $black     #191d26
+set  $bblack    #555555
 
-set  $green     #b58900
-set  $bgreen    #7d9002
-set  $focused   #2e9182
-set  $unfocused #1d817e
+set  $red       #ea5965
+set  $bred      #ea5965
 
-set  $yellow    #E0301E
-set  $byellow   #16a085
+set  $green     #ade46b
+set  $bgreen    #c1e436
 
-set  $blue      #428bca
-set  $bblue     #559eb3
+set  $yellow    #fec254
+set  $byellow   #fed96d
 
-set  $magenta   #a03470
-set  $bmagenta  #9360a2
+set  $blue      #2d91d0
+set  $bblue     #5555ff
 
-set  $cyan      #8c95dd
-set  $bcyan     #c45aec
+set  $magenta   #c9aeff
+set  $bmagenta  #ff55ff
 
-set  $white     #576e74
-set  $bwhite    #93a1a1
-set  $cwhite    #F2F2F2      
+set  $cyan      #86e2bf
+set  $bcyan     #99ffda
 
-set  $i3status  #006666
+set  $white     #bbbbbb
+set  $bwhite    #ffffff
+set  $cwhite    #F2F2F2
 
-# Window color scheme
+set $urgent     #E02C6D      
 
-# Class                    border     backgr.    text       indicator    child_border
+#######################
+# Window color scheme #
+#######################
 
-client.focused             $byellow   $byellow   $cwhite     $yellow      $black
-client.focused_inactive    $focused   $focused   $black     $yellow      $black
-client.unfocused           $unfocused $unfocused $black     $yellow      $black
-client.urgent              $bred      $bred      $cwhite    $yellow      $bred
-client.placeholder         $red       $red       $cwhite    $yellow      $bred
+# Class                    border      backgr.     text        indicator    child_border
 
+client.focused             $background $background $foreground $bred        $red
+client.focused_inactive    $background $background $foreground $gray        $gray
+client.unfocused           $background $background $foreground $gray        $gray
+client.urgent              $background $background $foreground $red         $red
+client.placeholder         $background $yellow     $foreground $gray        $gray
 client.background          $cwhite
 
-# Bar
+#######
+# Bar #
+#######
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -64,26 +68,28 @@ bar {
         #status_command i3status -c ~/.config/i3/i3status.conf
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         position bottom
-	mode dock
+		mode dock
         tray_output none
         font pango:Inconsolata Bold for Powerline bold 8
 
         colors {
-        background $i3status
-        statusline $byellow
+        background $background
+        statusline $bred
         separator  $bblack
         
-        #class                border     background  text
-        focused_workspace     $byellow   $byellow    $cwhite
-        active_workspace      $i3status  $i3status   $bgreen
-        inactive_workspace    $i3status  $i3status   $black
-        urgent_workspace      $bred      $bred       $cwhite
-        binding_mode          $byellow   $byellow    $black
-
+        #class                border      background   text
+        focused_workspace     $red        $bred        $cwhite
+        active_workspace      $background $background  $bgreen
+        inactive_workspace    $bblack     $bblack      $black
+        urgent_workspace      $urgent     $urgent      $cwhite
+        binding_mode          $bblack     $bblack      $black
     }
 }
 
-# Setting workspaces variables
+################################
+# Setting workspaces variables #
+################################
+
 set $workspace1 "&#xf120;"
 set $workspace2 "&#xf269;"
 set $workspace3 "&#xf16a;"
@@ -95,11 +101,19 @@ set $workspace8 "&#xf140;"
 set $workspace9 "&#xf019;"
 set $workspace10 "&#xf108;"
 
-
-# General Configuration
+#########################
+# General Configuration #
+#########################
 
 # Font
-font pango:Inconsolata Bold for Powerline bold 8
+font pango:Roboto 11
+
+# Borders for windows
+for_window [class="^.*"] border pixel 1
+
+# Gaps
+gaps inner 10
+gaps outer 14
 
 # Hide left, right and bottom borders
 hide_edge_borders both
@@ -153,8 +167,9 @@ no_focus [window_role="pop-up"]
 
 # Also note that your output names are not descriptive (like HDMI1) when using Xinerama, instead they are counted up, starting at 0: xinerama-0, xinerama-1...
 
-
-# Window related bindings
+###########################
+# Window related bindings #
+###########################
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -218,7 +233,10 @@ bindsym $mod+a focus parent
 # Focus the child container
 #bindsym $mod+d focus child
 
-# Floating windows
+####################
+# Floating windows #
+####################
+
 for_window [class="Gpick|Pavucontrol|Mumble|Event Tester|NoScript Options"] floating enable,move absolute center
 for_window [class="feh"] fullscreen enable
 for_window [class="Steam" title="Friends|*Chat|Steam - Update News"] floating enable,move absolute center
@@ -226,7 +244,9 @@ for_window [class="Radiant" title="Patch density|Entities|Q3Map debug window|Arb
 for_window [window_role="pop-up"] floating enable,move absolute center
 for_window [window_role="task_dialog"] floating enable,move absolute center
 
-# Resize window (you can also use the mouse for that)
+#######################################################
+# Resize window (you can also use the mouse for that) #
+#######################################################
 
 bindsym $mod+r mode "resize"
 
@@ -253,8 +273,28 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+###############
+# resize gaps #
+###############
 
-# Workspace related bindings
+set $mode_gaps Resize outer gap: +/-/0 (local), Shift + +/-/0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 20
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 20
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+##############################
+# Workspace related bindings #
+##############################
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -268,7 +308,10 @@ bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
-# Move focused container to workspace
+#######################################
+# Move focused container to workspace #
+#######################################
+
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
@@ -280,7 +323,9 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# Designing workspaces for applications 
+#########################################
+# Designing workspaces for applications #
+#########################################
 
 # Assign urxvt to workspace 1
 assign [class="^URxvt$"] $workspace1
@@ -291,20 +336,23 @@ assign [class="Firefox|qutebrowser|Epiphany|Chromium|Remmina"] $workspace2
 # Assign mpv to workspace 3
 assign [class="mpv"] $workspace3
 
+# Assign zathura to workspace 3
+assign [class="Zathura"] $workspace3
+
 # Assign urban terror and steam to workspace 4
 assign [class="urban_42|urban_64|urbanterror|Steam|Wine|Radiant"] $workspace4
 
-# Assign skype to workspace 5
-assign [class="skypeforlinux|TeamSpeak 3|discord"] $workspace5
-
-# Assign vlc to workspace 3
-assign [class="Vlc"] $workspace3
+# Assign voip software to workspace 5
+assign [class="skypeforlinux|TeamSpeak 3|discord|TelegramDesktop"] $workspace5
 
 # Assign Electrum to workspace 6
 assign [class="Electrum"] $workspace6
 
 # Assign gimp to workspace 7
-assign [class="Gimp"] $workspace7
+assign [class="Gimp|feh"] $workspace7
+
+# Assign sweep to workspace 7
+assign [class="Sweep"] $workspace7
 
 # Assign xfburn to workspace 8
 assign [class="Xfburn"] $workspace8
@@ -312,7 +360,9 @@ assign [class="Xfburn"] $workspace8
 # Assign jdownloader to workspace 9
 assign [class="JDownloader"] $workspace9
 
-# Restart, reload config and exit i3 bindings
+#######################
+# Reload/restart i3's #
+#######################
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -323,8 +373,9 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-
-# Program related bindings
+############################ 
+# Program related bindings #
+############################
 
 # Open a terminal
 # Bindsym $mod+Return exec i3-sensible-terminal
@@ -334,21 +385,25 @@ bindsym $mod+Return exec urxvtc
 bindsym $mod+m exec --no-startup-id offlineimap
 
 # Take a screenshot upon pressing $mod+x (select an area)
-# bindsym --release $mod+x exec --no-startup-id import ~/latest-screenshot.png
 bindsym --release $mod+x exec --no-startup-id imgur.sh
 
 # Use rofi window switcher and app launcher instead of dmenu
 # for running rofi as a daemon add this to xinitrc: exec rofi -key-run F2
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opacity "85" -font "Terminus bold 16"
+#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opacity "85" -font "Inconsolata Bold for Powerline bold 16"
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -font "Inconsolata Bold for Powerline bold 16"
 
 # Note: there also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+#################
+# Mode Launcher #
+#################
+
 # Press $mod+o to use the 'mode launcher' and Return or Esc to go back at the default mode
 
-set $mode_launcher Launch: [D]iscord [E]lectrum [F]irefox-Dev [G]pick [J]downloader [P]avucontrol [R]adiant [S]team [T]eamspeak [U]rban [X]fburn [W]allpaper
+set $mode_launcher Launch: [D]iscord [E]lectrum [F]irefox-Dev [G]pick [J]downloader [P]avucontrol [R]adiant [S]team [T]elegram [U]rban [X]fburn [W]allpaper [Z]athura
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
@@ -358,20 +413,23 @@ mode "$mode_launcher" {
     bindsym f exec ~/firefox/firefox
     bindsym g exec gpick
     bindsym j exec jdownloader
-    bindsym t exec teamspeak
     bindsym p exec pavucontrol
     bindsym r exec radiant
-    bindsym s exec steam-native
-    bindsym u exec urbanterror +set fs_homepath /opt/urbanterror/
+    bindsym s exec steam
+	bindsym t exec telegram-desktop
+    bindsym u exec /opt/urbanterror/urbanterror set fs_homepath /opt/urbanterror/
     bindsym x exec xfburn
     bindsym w exec ~/bin/wallpaper.sh
+	bindsym z exec zathura
 #   bindsym r exec urxvtc -e rtorrent
 
     bindsym Esc mode "default"
     bindsym Return mode "default"
 }
 
-# Shutdown reboot logout lock screen
+######################################
+# Shutdown reboot logout lock screen #
+######################################
 
 set $mode_system System: (L) Lock (E) Logout (R) Reboot (Shift+Delete) Shutdown
 
@@ -388,13 +446,14 @@ mode "$mode_system" {
 
 bindsym $mod+Delete mode "$mode_system"
 
+##############
+# Media keys #
+##############
 
-# Media keys 
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+# Pulse Audio control
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% # increase sound volume (check: 'pactl list' to choose the sound card you wanna manipulate, example:  alsa.card = "2")
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% # decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 2 toggle       # mute sound
 
 # Playerctl controls
 #bindsym XF86AudioPlay exec --no-startup-id playerctl play
@@ -428,8 +487,9 @@ bindsym $mod+End exec --no-startup-id pactl set-sink-volume 1 -5%
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
-
-# Starting up some apps
+####################
+# Starting up apps #
+####################
 
 # Start urxvt daemon
 exec --no-startup-id urxvtd &
@@ -438,16 +498,24 @@ exec --no-startup-id urxvtd &
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf &
 
 # Exec wallpaper script 
-exec_always --no-startup-id ~/bin/wallpaper
+exec_always --no-startup-id ~/bin/wallpaper.sh
 
 # Start dunst notification daemon
 exec --no-startup-id dunst -config ~/.dunstrc
 
 # Compton compositor
-exec --no-startup-id compton --unredir-if-possible --config ~/.config/compton/compton.conf -b
+#exec --no-startup-id compton --unredir-if-possible --config ~/.config/compton/compton.conf -b
 
 # Screensaver and power management
-exec --no-startup-id xautolock -time 10 -locker "lock.sh" -lockaftersleep &
+exec --no-startup-id xautolock -time 9 -locker "lock.sh" &
+
+# SCRIPTS 
+
+# launch alternating layout scripts
+#exec_always --no-startup-id $HOME/.config/i3/alternating_layouts.py  (install python-i3-py)
+
+# launch polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Notes
 
