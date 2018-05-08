@@ -8,8 +8,8 @@ xset r rate 300 30
 
 # Font paths
 xset +fp /usr/share/fonts/
-xset +fp /usr/share/fonts/local
 xset +fp /usr/share/fonts/TTF/
+xset +fp /usr/share/fonts/OTF/
 xset +fp ~/.fonts/
 xset fp rehash
 
