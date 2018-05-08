@@ -115,7 +115,7 @@ URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
 
 ! Url color
-URxvt.colorUL: #E0301E
+URxvt.colorUL: #C9AEFF
 
 ! rxvt-unicode bell feeds from irssi and alike
 URxvt.urgentOnBell:  true
