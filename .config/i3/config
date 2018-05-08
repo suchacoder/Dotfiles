@@ -501,7 +501,7 @@ exec --no-startup-id mpd ~/.config/mpd/mpd.conf &
 exec_always --no-startup-id ~/bin/wallpaper.sh
 
 # Start dunst notification daemon
-exec --no-startup-id dunst -config ~/.dunstrc
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 # Compton compositor
 #exec --no-startup-id compton --unredir-if-possible --config ~/.config/compton/compton.conf -b
