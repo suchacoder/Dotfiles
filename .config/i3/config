@@ -4,7 +4,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -16,6 +15,7 @@ set $mod Mod4
 #######################
 
 set  $background #212733
+set  $foreground #d0cec3
 
 set  $black     #191d26
 set  $bblack    #555555
@@ -40,9 +40,8 @@ set  $bcyan     #99ffda
 
 set  $white     #bbbbbb
 set  $bwhite    #ffffff
-set  $cwhite    #F2F2F2
 
-set $urgent     #E02C6D      
+set  $urgent     #E02C6D
 
 #######################
 # Window color scheme #
@@ -51,11 +50,11 @@ set $urgent     #E02C6D
 # Class                    border      backgr.     text        indicator    child_border
 
 client.focused             $background $background $foreground $bred        $red
-client.focused_inactive    $background $background $foreground $gray        $gray
-client.unfocused           $background $background $foreground $gray        $gray
-client.urgent              $background $background $foreground $red         $red
-client.placeholder         $background $yellow     $foreground $gray        $gray
-client.background          $cwhite
+client.focused_inactive    $background $background $foreground $foreground  $bblack
+client.unfocused           $background $background $foreground $foreground  $bblack
+client.urgent              $background $background $foreground $red         $bmagenta
+client.placeholder         $background $yellow     $foreground $foreground  $foreground
+client.background          $background
 
 #######
 # Bar #
@@ -78,11 +77,11 @@ bar {
         separator  $bblack
         
         #class                border      background   text
-        focused_workspace     $red        $bred        $cwhite
+        focused_workspace     $background $background  $red
         active_workspace      $background $background  $bgreen
-        inactive_workspace    $bblack     $bblack      $black
-        urgent_workspace      $urgent     $urgent      $cwhite
-        binding_mode          $bblack     $bblack      $black
+        inactive_workspace    $background $background  $black
+        urgent_workspace      $background $background  $bmagenta
+        binding_mode          $background $background  $bblack
     }
 }
 
@@ -390,7 +389,7 @@ bindsym --release $mod+x exec --no-startup-id imgur.sh
 # Use rofi window switcher and app launcher instead of dmenu
 # for running rofi as a daemon add this to xinitrc: exec rofi -key-run F2
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opacity "85" -font "Inconsolata Bold for Powerline bold 16"
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -font "Inconsolata Bold for Powerline bold 16"
+bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -font "Roboto regular 12"
 
 # Note: there also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -444,15 +443,15 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Delete mode "$mode_system"
+bindsym $mod+BackSpace mode "$mode_system"
 
 ##############
 # Media keys #
 ##############
 
-# Pulse Audio control
+# Pulse Audio control media keyboards
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% # increase sound volume (check: 'pactl list' to choose the sound card you wanna manipulate, example:  alsa.card = "2")
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% # decrease sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% # decrease sound volume (check: 'pactl list' to choose the sound card you wanna manipulate, example:  alsa.card = "2")
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 2 toggle       # mute sound
 
 # Playerctl controls
@@ -461,31 +460,31 @@ bindsym $mod+Delete mode "$mode_system"
 #bindsym XF86AudioNext exec --no-startup-id playerctl next
 #bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# Mpc player controls
+# Mpc player controls common keyboards (no media keys)
+bindsym $mod+Home exec --no-startup-id mpc toggle
+bindsym $mod+End exec --no-startup-id mpc stop
+bindsym $mod+Prior exec --no-startup-id mpc prev
+bindsym $mod+Next exec --no-startup-id mpc next
+bindsym $mod+Insert exec --no-startup-id pactl set-sink-volume 2 +5%
+bindsym $mod+Delete exec --no-startup-id pactl set-sink-volume 2 -5%
+
+# Mpc player controls media keyboards/notebooks/netbooks
 #bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 #bindsym XF86AudioPause exec --no-startup-id mpc pause
 #bindsym XF86AudioStop exec --no-startup-id mpc stop
 #bindsym XF86AudioNext exec --no-startup-id mpc next
 #bindsym XF86AudioPrev exec --no-startup-id mpc prev
 
-# Mpc player controls comfy
-bindsym $mod+BackSpace exec --no-startup-id mpc toggle
-bindsym $mod+exclamdown exec --no-startup-id mpc stop
-bindsym $mod+Home exec --no-startup-id mpc prev
-bindsym $mod+Prior exec --no-startup-id mpc next
-bindsym $mod+Next exec --no-startup-id pactl set-sink-volume 1 +5%
-bindsym $mod+End exec --no-startup-id pactl set-sink-volume 1 -5%
+# Numblock and Capslock indicators
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
-# Sreen brightness controls
+# Sreen brightness controls (xbacklight doesn't work for me, solution: https://bbs.archlinux.org/viewtopic.php?id=134972)
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
 # bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
-
-# Numblock and Capslock indicators
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 ####################
 # Starting up apps #
