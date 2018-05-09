@@ -3,7 +3,7 @@
 ! ------------------------------------------------------------------------------
 #define xbackground #212733
 #define xforeground #d0cec3
-#define xcursor     #d0cec3
+#define xcursor     #ade46b
 
 #define black       #191d26
 #define bblack      #555555
@@ -127,10 +127,9 @@ URxvt*metaSendsEscape: true
 rofi.color-enabled:		 true
 rofi.separator-style:	 solid
 rofi.hide-scrollbar:	 true
-rofi.color-window:		 #212733, #ffcc66, #738699
-rofi.color-normal:		 #212733, #d9d7ce, #212733, #d9d7ce, #212733
+rofi.color-window:		 #191d26, #555555, #ea5965
+rofi.color-normal:		 #191d26, #555555, #191d26, #191d26, #ea5965
 rofi.font:               Roboto regular 12
-rofi.bw:                 1
+rofi.bw:                 2
 rofi.padding:            15
-rofi.lines:              6
-
+rofi.lines:              4
