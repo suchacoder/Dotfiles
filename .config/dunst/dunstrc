@@ -1,7 +1,7 @@
 [global]
 
-    frame_width = 1
-    frame_color = "#fed96d"
+    frame_width = 2
+    frame_color = "#555555"
 
     font = Terminus bold 11
     
@@ -176,12 +176,12 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#191d26"
-    foreground = "#d0cec3"
+    foreground = "#ea5965"
     timeout = 10
 
 [urgency_normal]
     background = "#191d26"
-    foreground = "#d0cec3"
+    foreground = "#ea5965"
     timeout = 10
 
 [urgency_critical]
