@@ -3,7 +3,7 @@
 ! ------------------------------------------------------------------------------
 #define xbackground #212733
 #define xforeground #d0cec3
-#define xcursor     #ade46b
+#define xcursor     #555555
 
 #define black       #191d26
 #define bblack      #555555
