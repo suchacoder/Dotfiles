@@ -50,8 +50,8 @@ set  $urgent     #E02C6D
 # Class                    border      backgr.     text        indicator    child_border
 
 client.focused             $background $background $foreground $bred        $red
-client.focused_inactive    $background $background $foreground $foreground  $bblack
-client.unfocused           $background $background $foreground $foreground  $bblack
+client.focused_inactive    $background $background $foreground $bblack      $bblack
+client.unfocused           $background $background $foreground $bblack      $bblack
 client.urgent              $background $background $foreground $red         $bmagenta
 client.placeholder         $background $yellow     $foreground $foreground  $foreground
 client.background          $background
