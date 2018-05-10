@@ -108,7 +108,7 @@ set $workspace10 "&#xf108;"
 font pango:Roboto 11
 
 # Borders for windows
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 # Gaps
 gaps inner 10
