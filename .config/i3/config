@@ -14,7 +14,7 @@ set $mod Mod4
 # Setting some colors #
 #######################
 
-set  $background #212733
+set  $background #191d26
 set  $foreground #d0cec3
 
 set  $black     #191d26
@@ -49,10 +49,10 @@ set  $urgent     #E02C6D
 
 # Class                    border      backgr.     text        indicator    child_border
 
-client.focused             $background $background $foreground $bred        $red
+client.focused             $background $background $foreground $green       $bgreen
 client.focused_inactive    $background $background $foreground $bblack      $bblack
 client.unfocused           $background $background $foreground $bblack      $bblack
-client.urgent              $background $background $foreground $red         $bmagenta
+client.urgent              $background $background $foreground $green       $bcyan
 client.placeholder         $background $yellow     $foreground $foreground  $foreground
 client.background          $background
 
@@ -72,16 +72,16 @@ bar {
         font pango:Inconsolata Bold for Powerline bold 8
 
         colors {
-        background $background
-        statusline $bred
+        background $black
+        statusline $bgreen
         separator  $bblack
         
         #class                border      background   text
-        focused_workspace     $background $background  $red
-        active_workspace      $background $background  $bgreen
-        inactive_workspace    $background $background  $black
-        urgent_workspace      $background $background  $bmagenta
-        binding_mode          $background $background  $bblack
+        focused_workspace     $black $black  $bgreen
+        active_workspace      $black $black  $bgreen
+        inactive_workspace    $black $black  $bblack
+        urgent_workspace      $black $black  $bcyan
+        binding_mode          $black $black  $bblack
     }
 }
 
