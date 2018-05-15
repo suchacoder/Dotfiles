@@ -166,7 +166,7 @@
 # set suspend
 
 ## Use this tab size instead of the default; it must be greater than 0.
-# set tabsize 8
+set tabsize 4
 
 ## Convert typed tabs to spaces.
 # set tabstospaces
@@ -198,9 +198,9 @@
 ## Paint the interface elements of nano.
 ## These are examples; by default there are no colors.
 set titlecolor brightblack,black
-set numbercolor cyan
+set numbercolor green
 set statuscolor brightblack,black
-set keycolor brightred
+set keycolor brightgreen
 set functioncolor brightblack
 
 
