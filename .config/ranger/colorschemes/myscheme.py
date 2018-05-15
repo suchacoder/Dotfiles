@@ -33,7 +33,7 @@ class base(ColorScheme):
                 fg = 10
             if context.directory:
                 attr |= bold
-                fg = 3
+                fg = 0
             elif context.executable and not \
                     any((context.media, context.container,
                        context.fifo, context.socket)):
@@ -75,7 +75,7 @@ class base(ColorScheme):
         elif context.in_titlebar:
             attr |= bold
             if context.hostname:
-                fg = context.bad and 8 or 7
+                fg = context.bad and 1 or 2
             elif context.directory:
                 fg = 8
             elif context.tab:
