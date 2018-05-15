@@ -81,7 +81,7 @@ abstracts = {
 
   # All of below: $0 = mode, $1 = nick
   msgnick = "$0$1- %|";
-  ownmsgnick = "%_{msgnick %g$1%K%_|}%y";
+  ownmsgnick = "%_{msgnick %g$1%_%K%_|}%G";
   ownnick = "$*";
 
   # v3.05-hilight is now on red background and white text
@@ -91,10 +91,10 @@ abstracts = {
 
   pubmsgnick = "%_{msgnick $1%K%_|}%n";
   pubnick = "$*";
-  pubmsgmenick = "%p%c%_{msgnick $1%K%_|}%_%c";
+  pubmsgmenick = "%p%W%_{msgnick $1%K%_|}%w";
   menick = "$*%n";
   # $0 = hilight color, $1 = mode, $2 = nick
-  pubmsghinick = "%c%M%_{msgnick $2-|}";
+  pubmsghinick = "%K%_{msgnick $2-|}";
 
   # Got rid of on version 3.05:
   #
@@ -199,7 +199,7 @@ formats = {
     quit_once = "        %r*%K | %K{channick $0} [{chanhost $1}] %rquit%K %w(%KReason: \012{reason $2}%w)";
     nick_changed = "        %y*%K | %K{channick_hilight $0} %yis now known as%K {channick_hilight $1}";
 
-    own_msg = "{ownmsgnick $2 {ownnick $[-10]0}}%Y$1";
+    own_msg = "{ownmsgnick $2 {ownnick $[-10]0}}%K$1";
     own_msg_channel = "{ownmsgnick $3 {ownnick $[-10]0}{msgchannel $1}}%y%_$2";
     pubmsg_me = "{pubmsgmenick $2 {menick $[-10]0}}%_$1";
     pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-10]0}{msgchannel $1}}$2";
