@@ -59,12 +59,11 @@ browser {
 .tabbrowser-tab::after {
     color: green !important;
     opacity: 0 !important;
-  }
+}
 
 /* Remove placeholder right border */
 .titlebar-placeholder {
     border: none !important;
-
 
 }
 
@@ -130,9 +129,9 @@ browser {
  #TabsToolbar {
     margin:         0 0 0 45vw !important;
     height:         31px !important;
-    max-height: 32px !important;
+    max-height:     32px !important;
     padding-left:   -5px !important;
-    background: #191d26 !important;
+    background:     #191d26 !important;
 }
 
 /* Move address bar to titlebar with tabs */
@@ -140,7 +139,7 @@ browser {
     margin:         -30px 55vw -1px 35px !important;
     height:         31px !important;
     border-bottom:  none !important;
-    background: #191d26 !important;
+    background:     #191d26 !important;
 }
 
 
@@ -148,29 +147,32 @@ browser {
 /* URL bar width adjustments */
 #urlbar-container {
     border:         none !important;
-    width: 100px !important;
+    width:          100px !important;
 }
 
 #urlbar {
-    background:     none !important;
-    border:         none !important;
-    margin-left:    -2px !important;
-    min-width:      40px !important;
-    max-width:      9950px !important;
-    font-size:      12px !important;
-    height:         44px !important;
-    box-shadow:     none !important;
-    color: #a9a9a9 !important;
+    background-color: #131720 !important;
+    border:           none !important;
+    margin-top:       0px !important;
+    min-width:        40px !important;
+    max-width:        9950px !important;
+    font-size:        12px !important;
+    height:           44px !important;
+    box-shadow:       none !important;
+    color:            #444444 !important;
 }
 
 #urlbar:hover {
-    border:         none !important;
-    box-shadow:     none !important;
+    border-bottom:     2px solid #555555 !important;
+	background-color:  #182232 !important;
+    box-shadow:        none !important;
+	color:             #666666 !important;
 }
 
 #urlbar[focused="true"] {
-
-    border:         none !important;
+	border-bottom:     2px solid #ade46b !important;
+	background-color:  #212733 !important;
+	color:             #888888 !important;
 }
 
 /* Hide bookmark folder icons */
@@ -253,7 +255,7 @@ Delete this rule if you need a space to drag the window*/
 
 .browserContainer {
     position: relative;
-    background-color: #363636 !important;
+    background-color: #212733 !important;
 }
 
 findbar {
