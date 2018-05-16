@@ -153,6 +153,7 @@ browser {
 #urlbar {
     background-color: #191d26 !important;
     border:           none !important;
+	border-radius:    0px !important;
     margin-top:       0px !important;
     min-width:        40px !important;
     max-width:        9950px !important;
