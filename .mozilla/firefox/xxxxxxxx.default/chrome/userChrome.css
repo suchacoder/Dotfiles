@@ -151,7 +151,7 @@ browser {
 }
 
 #urlbar {
-    background-color: #131720 !important;
+    background-color: #191d26 !important;
     border:           none !important;
     margin-top:       0px !important;
     min-width:        40px !important;
@@ -163,16 +163,16 @@ browser {
 }
 
 #urlbar:hover {
-    border-bottom:     2px solid #555555 !important;
-	background-color:  #182232 !important;
+    border-bottom:     2px solid #666666 !important;
+	background-color:  #191d26 !important;
     box-shadow:        none !important;
 	color:             #666666 !important;
 }
 
 #urlbar[focused="true"] {
 	border-bottom:     2px solid #ade46b !important;
-	background-color:  #212733 !important;
-	color:             #888888 !important;
+	background-color:  #131720 !important;
+	color:             #c2c2c2 !important;
 }
 
 /* Hide bookmark folder icons */
