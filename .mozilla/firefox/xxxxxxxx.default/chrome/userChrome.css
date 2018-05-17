@@ -164,10 +164,12 @@ browser {
 }
 
 #urlbar:hover {
-    border-bottom:     2px solid #666666 !important;
-	background-color:  #191d26 !important;
-    box-shadow:        none !important;
-	color:             #666666 !important;
+    border-bottom:              2px solid #666666 !important;
+	background-color:           #191d26 !important;
+	transition-timing-function: linear !important;
+	transition-duration:        1s !important;
+    box-shadow:                 none !important;
+	color:                      #666666 !important;
 }
 
 #urlbar[focused="true"] {
