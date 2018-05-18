@@ -430,20 +430,20 @@ mode "$mode_launcher" {
 # Shutdown reboot logout lock screen #
 ######################################
 
-set $mode_system System: (L) Lock (E) Logout (R) Reboot (Shift+Delete) Shutdown
+set $mode_system System: (L) Lock (E) Logout (R) Reboot (Shift+BackSpace) Shutdown
+
+bindsym $mod+BackSpace mode "$mode_system"
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id ~/bin/lock.sh
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+Delete exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+BackSpace exec --no-startup-id systemctl poweroff -i, mode "default"  
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-bindsym $mod+BackSpace mode "$mode_system"
 
 ##############
 # Media keys #
