@@ -1,5 +1,5 @@
 # GTK theme
-include "/usr/share/themes/Numix/gtk-2.0/gtkrc"
+include "/usr/share/themes/Arc-Dark-solid/gtk-2.0/gtkrc"
 
 # Font
 style "myfont" {
@@ -9,7 +9,7 @@ widget_class "*" style "myfont"
 gtk-font-name = "Inconsolata Bold for Powerline 9"
 
 # Icon theme
-gtk-icon-theme-name = "Numix"
+gtk-icon-theme-name = "Arc"
 
 # Toolbar style
 gtk-toolbar-style = GTK_TOOLBAR_ICONS

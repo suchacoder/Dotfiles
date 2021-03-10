@@ -37,7 +37,7 @@ alias tmux='tmux -2' #Make tmux assume 256 colors
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias pacman="pacman --color=always"
 alias shot="scrot ~/screenshots/`date +%y-%m-%d-%H:%M:%S`.png"
-alias mocp='mocp -T /usr/share/moc/themes/moca_theme'
+alias mocp='mocp -T /usr/share/moc/themes/green_theme'
 alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias diff='diff --color=auto'
 alias mount='mount | column -t'
@@ -63,6 +63,10 @@ alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non 
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# nano -> vim alias
+
+alias nano="nvim"
 
 # One of @janmoesen's ProTips
 #for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do

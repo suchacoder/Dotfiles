@@ -64,6 +64,9 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
 
+# Java application using tor
+export JAVA_OPTIONS="$JAVA_OPTIONS -DsocksProxyHost=localhost -DsocksProxyPort=9050"
+
 # Old way to get an uniform qt gtk look
 #export QT_STYLE_OVERRIDE='gtk2'
 

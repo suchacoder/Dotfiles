@@ -14,32 +14,32 @@ set $mod Mod4
 # Setting some colors #
 #######################
 
-set  $background #191d26
-set  $foreground #d0cec3
+set  $background #262626
+set  $foreground #f6be8e
 
-set  $black     #191d26
-set  $bblack    #555555
+set  $black     #d65d0e
+set  $bblack    #af3a03
 
-set  $red       #ea5965
-set  $bred      #ea5965
+set  $red       #cc241d
+set  $bred      #fb4934
 
-set  $green     #ade46b
-set  $bgreen    #c1e436
+set  $green     #98971a
+set  $bgreen    #b8bb26
 
-set  $yellow    #fec254
-set  $byellow   #fed96d
+set  $yellow    #d79921
+set  $byellow   #fabd2f
 
-set  $blue      #2d91d0
-set  $bblue     #5555ff
+set  $blue      #458588
+set  $bblue     #83a598
 
-set  $magenta   #c9aeff
-set  $bmagenta  #ff55ff
+set  $magenta   #b16286
+set  $bmagenta  #d3869b
 
-set  $cyan      #86e2bf
-set  $bcyan     #99ffda
+set  $cyan      #689d6a
+set  $bcyan     #8ec07c
 
-set  $white     #bbbbbb
-set  $bwhite    #ffffff
+set  $white     #7c6f64
+set  $bwhite    #bdae93
 
 set  $urgent     #E02C6D
 
@@ -50,8 +50,8 @@ set  $urgent     #E02C6D
 # Class                    border      backgr.     text        indicator    child_border
 
 client.focused             $background $background $foreground $green       $bgreen
-client.focused_inactive    $background $background $foreground $bblack      $bblack
-client.unfocused           $background $background $foreground $bblack      $bblack
+client.focused_inactive    $background $background $foreground $white       $white
+client.unfocused           $background $background $foreground $white       $white
 client.urgent              $background $background $foreground $green       $bcyan
 client.placeholder         $background $yellow     $foreground $foreground  $foreground
 client.background          $background
@@ -72,16 +72,16 @@ bar {
         font pango:Inconsolata Bold for Powerline bold 8
 
         colors {
-        background $black
+        background $background
         statusline $bgreen
         separator  $bblack
         
         #class                border      background   text
-        focused_workspace     $black $black  $bgreen
-        active_workspace      $black $black  $bgreen
-        inactive_workspace    $black $black  $bblack
-        urgent_workspace      $black $black  $bcyan
-        binding_mode          $black $black  $bblack
+        focused_workspace     $background $background  $bgreen
+        active_workspace      $background $background  $bgreen
+        inactive_workspace    $background $background  $white
+        urgent_workspace      $background $background  $bcyan
+        binding_mode          $background $background  $white
     }
 }
 
@@ -329,8 +329,8 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 # Assign urxvt to workspace 1
 assign [class="^URxvt$"] $workspace1
 
-# Assign firefox epiphany and qutebrowser to workspace 2
-assign [class="Firefox|qutebrowser|Epiphany|Chromium|Remmina"] $workspace2
+# Assign firefox chromium epiphany and qutebrowser to workspace 2
+assign [class="Firefox|firefox|qutebrowser|Epiphany|Chromium|Remmina"] $workspace2
 
 # Assign mpv to workspace 3
 assign [class="mpv"] $workspace3
@@ -380,16 +380,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec urxvtc
 
-# Exec offlineimap to sync mails
-bindsym $mod+m exec --no-startup-id offlineimap
-
 # Take a screenshot upon pressing $mod+x (select an area)
 bindsym --release $mod+x exec --no-startup-id imgur.sh
+
+# Exec offlineimap to sync mails
+#bindsym $mod+m exec --no-startup-id offlineimap
 
 # Use rofi window switcher and app launcher instead of dmenu
 # for running rofi as a daemon add this to xinitrc: exec rofi -key-run F2
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opacity "85" -font "Inconsolata Bold for Powerline bold 16"
-bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -font "Roboto regular 12"
+#bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -font "Roboto regular 12"
 
 # Note: there also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -402,14 +402,15 @@ bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -font "Roboto regular 12"
 
 # Press $mod+o to use the 'mode launcher' and Return or Esc to go back at the default mode
 
-set $mode_launcher Launch: [D]iscord [E]lectrum [F]irefox-Dev [G]pick [J]downloader [P]avucontrol [R]adiant [S]team [T]elegram [U]rban [X]fburn [W]allpaper [Z]athura
+set $mode_launcher Launch: [D]iscord [E]lectrum [F]irefox-Dev [C]hromium [G]pick [J]downloader [P]avucontrol [R]adiant [S]team [T]elegram [U]rban [X]fburn [W]allpaper [Z]athura
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
     bindsym d exec discord
     bindsym e exec electrum
-    bindsym f exec ~/firefox/firefox
+    bindsym f exec firefox
+    bindsym c exec chromium
     bindsym g exec gpick
     bindsym j exec jdownloader
     bindsym p exec pavucontrol
@@ -465,8 +466,8 @@ bindsym $mod+Home exec --no-startup-id mpc toggle
 bindsym $mod+End exec --no-startup-id mpc stop
 bindsym $mod+Prior exec --no-startup-id mpc prev
 bindsym $mod+Next exec --no-startup-id mpc next
-bindsym $mod+Insert exec --no-startup-id pactl set-sink-volume 2 +5%
-bindsym $mod+Delete exec --no-startup-id pactl set-sink-volume 2 -5%
+bindsym $mod+Insert exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym $mod+Delete exec --no-startup-id pactl set-sink-volume 0 -5%
 
 # Mpc player controls media keyboards/notebooks/netbooks
 #bindsym XF86AudioPlay exec --no-startup-id mpc toggle

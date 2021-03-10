@@ -1,33 +1,33 @@
 ! ------------------------------------------------------------------------------
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
-#define xbackground #191d26
-#define xforeground #666666
+#define xbackground #262626
+#define xforeground #f6be8e
 #define xcursor     #555555
 
-#define black       #191d26
-#define bblack      #555555
+#define black       #262626
+#define bblack      #af3a03
 
-#define red         #ea5965
-#define bred        #ea5965
+#define red         #cc241d
+#define bred        #fb4934
 
-#define green       #ade46b
-#define bgreen      #c1e436
+#define green       #98971a
+#define bgreen      #b8bb26
 
-#define yellow      #fec254
-#define byellow     #fed96d
+#define yellow      #d79921
+#define byellow     #fabd2f
 
-#define blue        #2d91d0
-#define bblue       #5555ff
+#define blue        #458588
+#define bblue       #83a598
 
-#define magenta     #c9aeff
-#define bmagenta    #ff55ff
+#define magenta     #b16286
+#define bmagenta    #d3869b
 
-#define cyan        #86e2bf
-#define bcyan       #99ffda
+#define cyan        #689d6a
+#define bcyan       #8ec07c
 
-#define white       #bbbbbb
-#define bwhite      #ffffff
+#define white       #7c6f64
+#define bwhite      #bdae93
 
 ! ------------------------------------------------------------------------------
 ! Settin up Color Scheme
@@ -105,7 +105,7 @@ URxvt.clipboard.copycmd:  xsel -ib
 URxvt.clipboard.pastecmd: xsel -ob
 
 ! Default browser for launching urls
-URxvt.url-launcher: /home/curiousx/firefox/firefox
+URxvt.url-launcher: /usr/bin/firefox
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.matcher.button: 1

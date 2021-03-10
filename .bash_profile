@@ -3,7 +3,7 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
- 
+
 
 # Dotfiles directory
 DOTFILES_DIR="$HOME/dotfiles"

@@ -2,8 +2,3 @@ max_peers = 25
 
 max_peers_seed = 5
 max_uploads = 5
-
-color_inactive_fg = 7
-color_dead_fg = 1
-color_active_fg = 11
-color_finished_fg = 10
