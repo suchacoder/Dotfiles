@@ -1,7 +1,7 @@
 ! ------------------------------------------------------------------------------
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
-#define xbackground #262626
+#define xbackground #373737
 #define xforeground #f6be8e
 #define xcursor     #555555
 
@@ -106,7 +106,7 @@ URxvt.clipboard.pastecmd: xsel -ob
 
 ! Default browser for launching urls
 URxvt.url-launcher: /usr/bin/firefox
-URxvt.url-select.launcher: /usr/bin/xdg-open
+!URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.matcher.button: 1
 
