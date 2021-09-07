@@ -5,7 +5,7 @@
 #define xforeground #f6be8e
 #define xcursor     #555555
 
-#define black       #262626
+#define black       #373737
 #define bblack      #af3a03
 
 #define red         #cc241d
