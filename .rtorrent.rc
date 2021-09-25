@@ -2,3 +2,5 @@ max_peers = 25
 
 max_peers_seed = 5
 max_uploads = 5
+
+check_hash = no
