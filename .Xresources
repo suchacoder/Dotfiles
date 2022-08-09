@@ -1,12 +1,12 @@
 ! ------------------------------------------------------------------------------
 ! Defining Color Scheme
 ! ------------------------------------------------------------------------------
-#define xbackground #373737
-#define xforeground #f6be8e
+#define xbackground #1E2122
+#define xforeground #888888
 #define xcursor     #555555
 
-#define black       #373737
-#define bblack      #af3a03
+#define black       #555555
+#define bblack      #666666
 
 #define red         #cc241d
 #define bred        #fb4934
@@ -80,7 +80,8 @@ Xft.lcdfilter: lcddefault
 URxvt*termName: rxvt
 
 ! Font
-URxvt.font: xft:Inconsolata for Powerline:size=11:style=Medium
+URxvt*font: xft:Consolas:size=10
+URxvt.depth: 32
 URxvt.letterSpace: -1
 
 ! Cursor
