@@ -14,7 +14,7 @@ set $mod Mod4
 # Setting some colors #
 #######################
 
-set  $background #262626
+set  $background #1E2122
 set  $foreground #f6be8e
 
 set  $black     #d65d0e
@@ -38,7 +38,7 @@ set  $bmagenta  #d3869b
 set  $cyan      #689d6a
 set  $bcyan     #8ec07c
 
-set  $white     #7c6f64
+set  $white     #333333
 set  $bwhite    #bdae93
 
 set  $urgent     #E02C6D
@@ -49,10 +49,10 @@ set  $urgent     #E02C6D
 
 # Class                    border      backgr.     text        indicator    child_border
 
-client.focused             $background $background $foreground $green       $bgreen
+client.focused             $background $background $foreground $green       $black
 client.focused_inactive    $background $background $foreground $white       $white
 client.unfocused           $background $background $foreground $white       $white
-client.urgent              $background $background $foreground $green       $bcyan
+client.urgent              $background $background $foreground $green       $bred
 client.placeholder         $background $yellow     $foreground $foreground  $foreground
 client.background          $background
 
@@ -69,7 +69,7 @@ bar {
         position bottom
 		mode dock
         tray_output none
-        font pango:Inconsolata Bold for Powerline bold 8
+        font pango:Sauce Code Pro Nerd Font 9
 
         colors {
         background $background
@@ -77,10 +77,10 @@ bar {
         separator  $bblack
         
         #class                border      background   text
-        focused_workspace     $background $background  $bgreen
-        active_workspace      $background $background  $bgreen
+        focused_workspace     $background $background  $black
+        active_workspace      $background $background  $black
         inactive_workspace    $background $background  $white
-        urgent_workspace      $background $background  $bcyan
+        urgent_workspace      $background $background  $bred
         binding_mode          $background $background  $white
     }
 }
@@ -105,7 +105,7 @@ set $workspace10 "&#xf108;"
 #########################
 
 # Font
-font pango:Roboto 11
+font pango:Sauce Code Pro Nerd Font 9
 
 # Borders for windows
 for_window [class="^.*"] border pixel 2
@@ -236,7 +236,7 @@ bindsym $mod+a focus parent
 # Floating windows #
 ####################
 
-for_window [class="Gpick|Pavucontrol|Mumble|Event Tester|NoScript Options"] floating enable,move absolute center
+for_window [class="Gcolor2|Gpick|Pavucontrol|Mumble|Event Tester|NoScript Options"] floating enable,move absolute center
 for_window [class="feh"] fullscreen enable
 for_window [class="Steam" title="Friends|*Chat|Steam - Update News"] floating enable,move absolute center
 for_window [class="Radiant" title="Patch density|Entities|Q3Map debug window|Arbitrary sides|Thicken Patch|Surface Inspector|Available Scripts - Not Implemented Yet|Cap|Information|Map Info|Gamma|Find Brush"] floating enable,move absolute center
@@ -339,7 +339,7 @@ assign [class="mpv"] $workspace3
 assign [class="Zathura"] $workspace3
 
 # Assign urban terror and steam to workspace 4
-assign [class="urban_42|urban_64|urbanterror|Steam|Wine|Radiant"] $workspace4
+assign [class="urt_m9|urban|urban_64|urbanterror|bypass|Steam|Wine|Radiant|minecraft-launcher|Minecraft Launcher"] $workspace4
 
 # Assign voip software to workspace 5
 assign [class="skypeforlinux|TeamSpeak 3|discord|TelegramDesktop"] $workspace5
@@ -411,13 +411,13 @@ mode "$mode_launcher" {
     bindsym e exec electrum
     bindsym f exec firefox
     bindsym c exec chromium
-    bindsym g exec gpick
+    bindsym g exec gcolor2
     bindsym j exec jdownloader
     bindsym p exec pavucontrol
     bindsym r exec radiant
     bindsym s exec steam
-	bindsym t exec telegram-desktop
-    bindsym u exec /opt/urbanterror/urbanterror set fs_homepath /opt/urbanterror/
+    bindsym t exec telegram-desktop
+    bindsym u exec /mnt/urbanterror/urban set fs_homepath /mnt/urbanterror_ika
     bindsym x exec xfburn
     bindsym w exec ~/bin/wallpaper.sh
 	bindsym z exec zathura
@@ -431,7 +431,7 @@ mode "$mode_launcher" {
 # Shutdown reboot logout lock screen #
 ######################################
 
-set $mode_system System: (L) Lock (E) Logout (R) Reboot (Shift+BackSpace) Shutdown
+set $mode_system System: (L) Lock (E) Logout (R) Reboot (S) Suspend (Shift+BackSpace) Shutdown
 
 bindsym $mod+BackSpace mode "$mode_system"
 
@@ -439,6 +439,7 @@ mode "$mode_system" {
     bindsym l exec --no-startup-id ~/bin/lock.sh
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym Shift+BackSpace exec --no-startup-id systemctl poweroff -i, mode "default"  
 
     # back to normal: Enter or Escape
