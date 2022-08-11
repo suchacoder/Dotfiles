@@ -3,13 +3,13 @@
 ! ------------------------------------------------------------------------------
 #define xbackground #1E2122
 #define xforeground #888888
-#define xcursor     #555555
+#define xcursor     #333333
 
 #define black       #555555
 #define bblack      #666666
 
-#define red         #cc241d
-#define bred        #fb4934
+#define red         #EC6B64
+#define bred        #FE9F29
 
 #define green       #98971a
 #define bgreen      #b8bb26
@@ -80,7 +80,7 @@ Xft.lcdfilter: lcddefault
 URxvt*termName: rxvt
 
 ! Font
-URxvt*font: xft:Sauce Code Pro Nerd Font:size=10
+URxvt*font: xft:Sauce Code Pro Nerd Font:style=Regular:size=10
 URxvt.depth: 32
 URxvt.letterSpace: -1
 
@@ -116,7 +116,7 @@ URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
 
 ! Url color
-URxvt.colorUL: #ade46b
+URxvt.colorUL: #89B482
 
 ! rxvt-unicode bell feeds from irssi and alike
 URxvt.urgentOnBell:  true
