@@ -15,13 +15,13 @@ set $mod Mod4
 #######################
 
 set  $background #1E2122
-set  $foreground #f6be8e
+set  $foreground #888888
 
-set  $black     #d65d0e
-set  $bblack    #af3a03
+set  $black     #555555
+set  $bblack    #666666
 
-set  $red       #cc241d
-set  $bred      #fb4934
+set  $red       #EC6B64
+set  $bred      #FE9F29
 
 set  $green     #98971a
 set  $bgreen    #b8bb26
