@@ -67,7 +67,7 @@ bar {
         #status_command i3status -c ~/.config/i3/i3status.conf
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         position bottom
-		mode dock
+    		mode dock
         tray_output none
         font pango:Sauce Code Pro Nerd Font 9
 
@@ -81,7 +81,7 @@ bar {
         active_workspace      $background $background  $black
         inactive_workspace    $background $background  $white
         urgent_workspace      $background $background  $bred
-        binding_mode          $background $background  $white
+        binding_mode          $background $background  $black
     }
 }
 
