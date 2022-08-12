@@ -1,1 +1,1 @@
-sudo pacman -S rxvt-unicode-truecolor-wide-glyphs
+sudo pacman -S rxvt-unicode-truecolor-wide-glyphs gtk2-perl libxft-bgra
