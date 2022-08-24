@@ -27,7 +27,8 @@ alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
 # grep alias
-alias grep='grep --color=auto'
+alias grep='rg'
+#alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
