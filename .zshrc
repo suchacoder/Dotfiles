@@ -180,3 +180,13 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 # Fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+# Fortune, cowsay + lolcat
+if [ -x /usr/bin/cowsay -a -x /usr/bin/misfortune ]; then
+   misfortune | cowsay -f $(ls /usr/share/cows/ | shuf -n1) | lolcat
+fi
+
+# Bash Zsh Insulter
+if [ -f /etc/bash.command-not-found ]; then
+  . /etc/bash.command-not-found
+fi

@@ -72,7 +72,14 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+
+
 # Fortune, cowsay + lolcat
-#if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune ]; then
-#   fortune | cowsay -f $(ls /usr/share/cows/ | shuf -n1) | lolcat
-#fi
+if [ -x /usr/bin/cowsay -a -x /usr/bin/misfortune ]; then
+   misfortune | cowsay -f $(ls /usr/share/cows/ | shuf -n1) | lolcat
+fi
+
+# Bash Zsh Insulter
+if [ -f /etc/bash.command-not-found ]; then
+  . /etc/bash.command-not-found
+fi
