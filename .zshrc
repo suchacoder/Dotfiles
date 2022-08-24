@@ -130,7 +130,8 @@ INSERT_MODE_INDICATOR="%F{#555555}%BINSERT%b%f"
 #
 
 # ls alias
-alias ls='ls -BX --color=auto'  # Default ls behaviour
+alias ls='lsd -X'  # Default ls behaviour
+#alias ls='ls -BX --color=auto'  # Default ls behaviour
 #alias ls='ls -sh --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
