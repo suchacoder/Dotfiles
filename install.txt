@@ -1,3 +1,3 @@
-sudo pacman -S rxvt-unicode-truecolor-wide-glyphs gtk2-perl libxft-bgra bat lsd lolcat cowsay misfortune bat ripgrep tldr
+sudo pacman -S rxvt-unicode-truecolor-wide-glyphs gtk2-perl libxft-bgra bat lsd lolcat cowsay misfortune bat ripgrep tldr fd
 
 AUR: bash-zsh-insulter neovim-web-devicons-git nerd-fonts-source-code-pro nvim-packer-git rivalcfg rxvt-unicode-truecolor-wide-glyphs ttf-devicons zramswap
